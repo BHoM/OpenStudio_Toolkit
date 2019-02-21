@@ -1,0 +1,2846 @@
+
+Version, ;
+
+Timestep, 6;
+
+ShadowCalculation,
+	AverageOverDaysInFrequency,        !- Calculation Method
+	30,        !- Calculation Frequency
+	3000;    !- Maximum Figures in Shadow Overlap Calculation
+
+Building,
+	BasicClassroom.idf, !- Name
+	0.0, !- North Axis {deg}
+	City, !- Terrain
+	, !- Loads Convergence Tolerance Value
+	, !- Temperature Convergence Tolerance Value {deltaC}
+	FullInteriorAndExteriorWithReflections, !- Solar Distribution or maybe FullExterior
+	, !- Maximum Number of Warmup Days
+	; !- Minimum Number of Warmup Days
+
+Sizing:Parameters,
+	1.25,     !- Heating Sizing Factor
+	1.15;     !- Cooling Sizing Factor
+
+Site:Location,
+	BIRMINGHAM	GBR,
+	52.45,    !Latitude
+	-1.73,   !Longitude
+	0.0, !Time Zone
+	99.0;   !Elevation
+
+SizingPeriod:DesignDay,
+	Ann Htg 99.6% Condns DB,     !- Name
+	2,      !- Month
+	21,      !- Day of Month
+	WinterDesignDay,!- Day Type
+	-3.2,      !- Maximum Dry-Bulb Temperature {C}
+	0,      !- Daily Dry-Bulb Temperature Range {C}
+	DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
+	,      !- Dry-Bulb Temperature Range Modifier Schedule Name
+	Wetbulb,      !- Humidity Condition Type
+	-3.2,      !- Wetbulb or Dewpoint at Maximum Dry-Bulb {C}
+	,      !- Humidity Indicating Day Schedule Name
+	,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+	,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
+	,      !- Daily Wet-Bulb Temperature Range {deltaC}
+	100342,      !- Barometric Pressure {Pa}
+	3.6,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+	177,      !- Wind Direction {Degrees; N=0, S=180}
+	No,      !- Rain {Yes/No}
+	No,      !- Snow on ground {Yes/No}
+	No,      !- Daylight Savings Time Indicator
+	ASHRAEClearSky, !- Solar Model Indicator
+	,      !- Beam Solar Day Schedule Name
+	,      !- Diffuse Solar Day Schedule Name
+	,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+	,      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+	0;      !- Clearness {0.0 to 1.1}
+
+SizingPeriod:DesignDay,
+	Ann Hum_n 99.6% Condns DP=>MCDB,     !- Name
+	2,      !- Month
+	21,      !- Day of Month
+	WinterDesignDay,!- Day Type
+	-0.1,      !- Maximum Dry-Bulb Temperature {C}
+	0,      !- Daily Dry-Bulb Temperature Range {C}
+	DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
+	,      !- Dry-Bulb Temperature Range Modifier Schedule Name
+	Dewpoint,      !- Humidity Condition Type
+	-6.4,      !- Wetbulb or Dewpoint at Maximum Dry-Bulb {C}
+	,      !- Humidity Indicating Day Schedule Name
+	,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+	,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
+	,      !- Daily Wet-Bulb Temperature Range {deltaC}
+	100342,      !- Barometric Pressure {Pa}
+	3.6,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+	177,      !- Wind Direction {Degrees; N=0, S=180}
+	No,      !- Rain {Yes/No}
+	No,      !- Snow on ground {Yes/No}
+	No,      !- Daylight Savings Time Indicator
+	ASHRAEClearSky, !- Solar Model Indicator
+	,      !- Beam Solar Day Schedule Name
+	,      !- Diffuse Solar Day Schedule Name
+	,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+	,      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+	0;      !- Clearness {0.0 to 1.1}
+
+SizingPeriod:DesignDay,
+	Ann Htg Wind 99.6% Condns WS=>MCDB,     !- Name
+	2,      !- Month
+	21,      !- Day of Month
+	WinterDesignDay,!- Day Type
+	3.5,      !- Maximum Dry-Bulb Temperature {C}
+	0,      !- Daily Dry-Bulb Temperature Range {C}
+	DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
+	,      !- Dry-Bulb Temperature Range Modifier Schedule Name
+	Wetbulb,      !- Humidity Condition Type
+	3.5,      !- Wetbulb or Dewpoint at Maximum Dry-Bulb {C}
+	,      !- Humidity Indicating Day Schedule Name
+	,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+	,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
+	,      !- Daily Wet-Bulb Temperature Range {deltaC}
+	100342,      !- Barometric Pressure {Pa}
+	8.7,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+	177,      !- Wind Direction {Degrees; N=0, S=180}
+	No,      !- Rain {Yes/No}
+	No,      !- Snow on ground {Yes/No}
+	No,      !- Daylight Savings Time Indicator
+	ASHRAEClearSky, !- Solar Model Indicator
+	,      !- Beam Solar Day Schedule Name
+	,      !- Diffuse Solar Day Schedule Name
+	,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+	,      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+	0;      !- Clearness {0.0 to 1.1}
+
+SizingPeriod:DesignDay,
+	Ann Clg .4% Condns DB=>MWB,     !- Name
+	7,      !- Month
+	21,      !- Day of Month
+	SummerDesignDay,!- Day Type
+	25.2,      !- Maximum Dry-Bulb Temperature {C}
+	9.24,      !- Daily Dry-Bulb Temperature Range {C}
+	DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
+	,      !- Dry-Bulb Temperature Range Modifier Schedule Name
+	Wetbulb,      !- Humidity Condition Type
+	19.264,      !- Wetbulb or Dewpoint at Maximum Dry-Bulb {C}
+	,      !- Humidity Indicating Day Schedule Name
+	,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+	,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
+	,      !- Daily Wet-Bulb Temperature Range {deltaC}
+	100342,      !- Barometric Pressure {Pa}
+	4.6,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+	185,      !- Wind Direction {Degrees; N=0, S=180}
+	No,      !- Rain {Yes/No}
+	No,      !- Snow on ground {Yes/No}
+	No,      !- Daylight Savings Time Indicator
+	ASHRAEClearSky, !- Solar Model Indicator
+	,      !- Beam Solar Day Schedule Name
+	,      !- Diffuse Solar Day Schedule Name
+	,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+	,      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+	1.2;      !- Clearness {0.0 to 1.1}
+
+SizingPeriod:DesignDay,
+	Ann Clg .4% Condns WB=>MDB,     !- Name
+	7,      !- Month
+	21,      !- Day of Month
+	SummerDesignDay,!- Day Type
+	20.8,      !- Maximum Dry-Bulb Temperature {C}
+	9.24,      !- Daily Dry-Bulb Temperature Range {C}
+	DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
+	,      !- Dry-Bulb Temperature Range Modifier Schedule Name
+	Wetbulb,      !- Humidity Condition Type
+	17.844,      !- Wetbulb or Dewpoint at Maximum Dry-Bulb {C}
+	,      !- Humidity Indicating Day Schedule Name
+	,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+	,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
+	,      !- Daily Wet-Bulb Temperature Range {deltaC}
+	100342,      !- Barometric Pressure {Pa}
+	4.6,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+	185,      !- Wind Direction {Degrees; N=0, S=180}
+	No,      !- Rain {Yes/No}
+	No,      !- Snow on ground {Yes/No}
+	No,      !- Daylight Savings Time Indicator
+	ASHRAEClearSky, !- Solar Model Indicator
+	,      !- Beam Solar Day Schedule Name
+	,      !- Diffuse Solar Day Schedule Name
+	,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+	,      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+	1.2;      !- Clearness {0.0 to 1.1}
+
+SizingPeriod:DesignDay,
+	Ann Clg .4% Condns DP=>MDB,     !- Name
+	7,      !- Month
+	21,      !- Day of Month
+	SummerDesignDay,!- Day Type
+	21.9,      !- Maximum Dry-Bulb Temperature {C}
+	9.24,      !- Daily Dry-Bulb Temperature Range {C}
+	DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
+	,      !- Dry-Bulb Temperature Range Modifier Schedule Name
+	Dewpoint,      !- Humidity Condition Type
+	16.1,      !- Wetbulb or Dewpoint at Maximum Dry-Bulb {C}
+	,      !- Humidity Indicating Day Schedule Name
+	,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+	,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
+	,      !- Daily Wet-Bulb Temperature Range {deltaC}
+	100342,      !- Barometric Pressure {Pa}
+	4.6,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+	185,      !- Wind Direction {Degrees; N=0, S=180}
+	No,      !- Rain {Yes/No}
+	No,      !- Snow on ground {Yes/No}
+	No,      !- Daylight Savings Time Indicator
+	ASHRAEClearSky, !- Solar Model Indicator
+	,      !- Beam Solar Day Schedule Name
+	,      !- Diffuse Solar Day Schedule Name
+	,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+	,      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+	1.2;      !- Clearness {0.0 to 1.1}
+
+SizingPeriod:DesignDay,
+	Ann Clg .4% Condns Enth=>MDB,     !- Name
+	7,      !- Month
+	21,      !- Day of Month
+	SummerDesignDay,!- Day Type
+	30.4,      !- Maximum Dry-Bulb Temperature {C}
+	9.24,      !- Daily Dry-Bulb Temperature Range {C}
+	DefaultMultipliers, !- Dry-Bulb Temperature Range Modifier Type
+	,      !- Dry-Bulb Temperature Range Modifier Schedule Name
+	Enthalpy,      !- Humidity Condition Type
+	,      !- Wetbulb or Dewpoint at Maximum Dry-Bulb {C}
+	,      !- Humidity Indicating Day Schedule Name
+	,      !- Humidity Ratio at Maximum Dry-Bulb {kgWater/kgDryAir}
+	50127,      !- Enthalpy at Maximum Dry-Bulb {J/kg}
+	,      !- Daily Wet-Bulb Temperature Range {deltaC}
+	100342,      !- Barometric Pressure {Pa}
+	4.6,      !- Wind Speed {m/s} design conditions vs. traditional 6.71 m/s (15 mph)
+	185,      !- Wind Direction {Degrees; N=0, S=180}
+	No,      !- Rain {Yes/No}
+	No,      !- Snow on ground {Yes/No}
+	No,      !- Daylight Savings Time Indicator
+	ASHRAEClearSky, !- Solar Model Indicator
+	,      !- Beam Solar Day Schedule Name
+	,      !- Diffuse Solar Day Schedule Name
+	,      !- ASHRAE Clear Sky Optical Depth for Beam Irradiance (taub)
+	,      !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance (taud)
+	1.2;      !- Clearness {0.0 to 1.1}
+
+
+SimulationControl,
+	Yes,    !- Do Zone Sizing Calculation
+	Yes,  !- Do System Sizing Calculation
+	Yes,   !- Do Plant Sizing Calculation
+	No,  !- Run Simulation for Sizing Periods
+	Yes; !- Run Simulation for Weather File Run Periods
+
+RunPeriod,
+	customRun,    !- Name
+	1,   !- Begin Month
+	1,    !- Begin Day of Month
+	12, !- End Month
+	31,   !- End Day of Month
+	UseWeatherFile,   !- Day of Week for Start Day
+	Yes,              !- Use Weather File Holidays and Special Days
+	Yes,              !- Use Weather File Daylight Saving Period
+	No,               !- Apply Weekend Holiday Rule
+	Yes,              !- Use Weather File Rain Indicators
+	Yes;              !- Use Weather File Snow Indicators
+ScheduleTypeLimits,
+  TEMPERATURE 30,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  ANY NUMBER;   !- name
+
+ScheduleTypeLimits,
+  TEMPERATURE 40,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 50,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 8,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 60,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 9,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 19,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 29,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 39,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 1,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 2,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 3,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 4,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 5,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 6,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  CONTROL TYPE,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  4,   !- - Upper Limit Value {BasedOnField A3}
+  DISCRETE;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 7,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 49,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 59,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 14,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 17,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 27,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 37,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 47,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 57,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  ALWAYS ON DISCRETE LIMITS,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  1,   !- - Upper Limit Value {BasedOnField A3}
+  Discrete,   !- - Numeric Type
+  availability;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 10,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 18,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 28,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 15,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 38,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 48,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 58,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 13,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 23,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 33,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 43,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 53,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 16,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 26,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 36,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 46,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 56,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  FRACTION,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  1,   !- - Upper Limit Value {BasedOnField A3}
+  CONTINUOUS;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 11,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 12,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 22,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 32,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 42,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 52,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 15,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 25,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 35,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 45,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 55,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 12,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 11,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 21,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 31,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 41,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 51,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 61,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 14,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 24,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 34,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 44,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 54,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  ON/OFF,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  1,   !- - Upper Limit Value {BasedOnField A3}
+  DISCRETE;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 4,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 5,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 13,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 6,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 7,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 1,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 2,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 3,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 8,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL 9,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+ScheduleTypeLimits,
+  FRACTIONAL,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  1,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE,   !- name
+  -60,   !- - Lower Limit Value {BasedOnField A3}
+  200,   !- - Upper Limit Value {BasedOnField A3}
+  CONTINUOUS;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 10,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  TEMPERATURE 20,   !- name
+  ,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  temperature;   !-
+
+ScheduleTypeLimits,
+  ACTIVITYLEVEL,   !- name
+  0,   !- - Lower Limit Value {BasedOnField A3}
+  ,   !- - Upper Limit Value {BasedOnField A3}
+  Continuous,   !- - Numeric Type
+  activitylevel;   !-
+
+
+GlobalGeometryRules,
+	LowerLeftCorner,         !- Starting Vertex Position
+	CounterClockWise,        !- Vertex Entry Direction
+	Relative,                !- Coordinate System
+	Relative,                !- Daylighting Ref Point Coordinate System
+	Relative;                !- Rectangular Surface Coordinate System
+
+Zone,
+	adjacency_0,
+	0,	!-Direction of Relative North {deg}
+	0.0,	!- X Origin {m}
+	0.0,	!- Y Origin {m}
+	0.0,	!- Z Origin {m}
+	1;	!- Type
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_0,	!- Name
+	WALL,	!- Surface Type
+	Exterior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	7.5,
+	-7.5,
+	0.0,
+	15.0,
+	-7.5,
+	0.0,
+	15.0,
+	-7.5,
+	3.0,
+	7.5,
+	-7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_1,	!- Name
+	WALL,	!- Surface Type
+	Exterior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	15.0,
+	-7.5,
+	0.0,
+	15.0,
+	15.0,
+	0.0,
+	15.0,
+	15.0,
+	3.0,
+	15.0,
+	-7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_2,	!- Name
+	WALL,	!- Surface Type
+	Exterior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	15.0,
+	15.0,
+	0.0,
+	-15.0,
+	15.0,
+	0.0,
+	-15.0,
+	15.0,
+	3.0,
+	15.0,
+	15.0,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_3,	!- Name
+	WALL,	!- Surface Type
+	Exterior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-15.0,
+	15.0,
+	0.0,
+	-15.0,
+	-7.5,
+	0.0,
+	-15.0,
+	-7.5,
+	3.0,
+	-15.0,
+	15.0,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_4,	!- Name
+	WALL,	!- Surface Type
+	Exterior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-15.0,
+	-7.5,
+	0.0,
+	-7.5,
+	-7.5,
+	0.0,
+	-7.5,
+	-7.5,
+	3.0,
+	-15.0,
+	-7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_5,	!- Name
+	WALL,	!- Surface Type
+	Interior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	SURFACE,	!- Outside Boundary Condition
+	classroom_0_Srf_3,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-7.5,
+	-7.5,
+	0.0,
+	-7.5,
+	7.5,
+	0.0,
+	-7.5,
+	7.5,
+	3.0,
+	-7.5,
+	-7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_6,	!- Name
+	WALL,	!- Surface Type
+	Interior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	SURFACE,	!- Outside Boundary Condition
+	classroom_0_Srf_2,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-7.5,
+	7.5,
+	0.0,
+	7.5,
+	7.5,
+	0.0,
+	7.5,
+	7.5,
+	3.0,
+	-7.5,
+	7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_7,	!- Name
+	WALL,	!- Surface Type
+	Interior Wall,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	SURFACE,	!- Outside Boundary Condition
+	classroom_0_Srf_1,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	7.5,
+	7.5,
+	0.0,
+	7.5,
+	-7.5,
+	0.0,
+	7.5,
+	-7.5,
+	3.0,
+	7.5,
+	7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_8,	!- Name
+	FLOOR,	!- Surface Type
+	Interior Floor,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	ground,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	8,	!- Number of Vertices
+	-15.0,
+	-7.5,
+	0.0,
+	-15.0,
+	15.0,
+	0.0,
+	15.0,
+	15.0,
+	0.0,
+	15.0,
+	-7.5,
+	0.0,
+	7.5,
+	-7.5,
+	0.0,
+	7.5,
+	7.5,
+	0.0,
+	-7.5,
+	7.5,
+	0.0,
+	-7.5,
+	-7.5,
+	0.0;
+
+
+BuildingSurface:Detailed,
+	adjacency_0_Srf_9,	!- Name
+	ROOF,	!- Surface Type
+	Exterior Roof,	!- Construction Name
+	adjacency_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	8,	!- Number of Vertices
+	-15.0,
+	-7.5,
+	3.0,
+	-7.5,
+	-7.5,
+	3.0,
+	-7.5,
+	7.5,
+	3.0,
+	7.5,
+	7.5,
+	3.0,
+	7.5,
+	-7.5,
+	3.0,
+	15.0,
+	-7.5,
+	3.0,
+	15.0,
+	15.0,
+	3.0,
+	-15.0,
+	15.0,
+	3.0;
+
+
+Zone,
+	classroom_0,
+	0,	!-Direction of Relative North {deg}
+	0.0,	!- X Origin {m}
+	0.0,	!- Y Origin {m}
+	0.0,	!- Z Origin {m}
+	1;	!- Type
+
+BuildingSurface:Detailed,
+	classroom_0_Srf_0,	!- Name
+	WALL,	!- Surface Type
+	Exterior Wall,	!- Construction Name
+	classroom_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-7.5,
+	-7.5,
+	0.0,
+	7.5,
+	-7.5,
+	0.0,
+	7.5,
+	-7.5,
+	3.0,
+	-7.5,
+	-7.5,
+	3.0;
+
+
+FenestrationSurface:Detailed,
+	classroom_0_Srf_0_glz_0,	!- Name
+	WINDOW,	!- Surface Type
+	Exterior Window,	!- Construction Name
+	classroom_0_Srf_0,	!- Surface Name
+	,	!- Outside Boundary Condition Object
+	autocalculate,	!- View Factor to Ground
+	,	!- Shading Control Name
+	,	!- Frame and Divider Name
+	1,	!- Multiplier
+	4,	!- Number of Vertices
+	1.640625,
+	-7.5,
+	0.80000001192092896,
+	5.859375,
+	-7.5,
+	0.80000001192092896,
+	5.859375,
+	-7.5,
+	2.4000000953674316,
+	1.640625,
+	-7.5,
+	2.4000000953674316;
+
+
+FenestrationSurface:Detailed,
+	classroom_0_Srf_0_glz_1,	!- Name
+	WINDOW,	!- Surface Type
+	Exterior Window,	!- Construction Name
+	classroom_0_Srf_0,	!- Surface Name
+	,	!- Outside Boundary Condition Object
+	autocalculate,	!- View Factor to Ground
+	,	!- Shading Control Name
+	,	!- Frame and Divider Name
+	1,	!- Multiplier
+	4,	!- Number of Vertices
+	-5.859375,
+	-7.5,
+	0.80000001192092896,
+	-1.640625,
+	-7.5,
+	0.80000001192092896,
+	-1.640625,
+	-7.5,
+	2.4000000953674316,
+	-5.859375,
+	-7.5,
+	2.4000000953674316;
+
+
+BuildingSurface:Detailed,
+	classroom_0_Srf_1,	!- Name
+	WALL,	!- Surface Type
+	Interior Wall,	!- Construction Name
+	classroom_0,	!- Zone Name
+	SURFACE,	!- Outside Boundary Condition
+	adjacency_0_Srf_7,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	7.5,
+	-7.5,
+	0.0,
+	7.5,
+	7.5,
+	0.0,
+	7.5,
+	7.5,
+	3.0,
+	7.5,
+	-7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	classroom_0_Srf_2,	!- Name
+	WALL,	!- Surface Type
+	Interior Wall,	!- Construction Name
+	classroom_0,	!- Zone Name
+	SURFACE,	!- Outside Boundary Condition
+	adjacency_0_Srf_6,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	7.5,
+	7.5,
+	0.0,
+	-7.5,
+	7.5,
+	0.0,
+	-7.5,
+	7.5,
+	3.0,
+	7.5,
+	7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	classroom_0_Srf_3,	!- Name
+	WALL,	!- Surface Type
+	Interior Wall,	!- Construction Name
+	classroom_0,	!- Zone Name
+	SURFACE,	!- Outside Boundary Condition
+	adjacency_0_Srf_5,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-7.5,
+	7.5,
+	0.0,
+	-7.5,
+	-7.5,
+	0.0,
+	-7.5,
+	-7.5,
+	3.0,
+	-7.5,
+	7.5,
+	3.0;
+
+
+BuildingSurface:Detailed,
+	classroom_0_Srf_4,	!- Name
+	FLOOR,	!- Surface Type
+	Interior Floor,	!- Construction Name
+	classroom_0,	!- Zone Name
+	ground,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	NoSun,	!- Sun Exposure
+	NoWind,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-7.5,
+	-7.5,
+	0.0,
+	-7.5,
+	7.5,
+	0.0,
+	7.5,
+	7.5,
+	0.0,
+	7.5,
+	-7.5,
+	0.0;
+
+
+BuildingSurface:Detailed,
+	classroom_0_Srf_5,	!- Name
+	ROOF,	!- Surface Type
+	Exterior Roof,	!- Construction Name
+	classroom_0,	!- Zone Name
+	Outdoors,	!- Outside Boundary Condition
+	,	!- Outside Boundary Condition Object
+	SunExposed,	!- Sun Exposure
+	WindExposed,	!- Wind Exposure
+	autocalculate,	!- View Factor to Ground
+	4,	!- Number of Vertices
+	-7.5,
+	-7.5,
+	3.0,
+	7.5,
+	-7.5,
+	3.0,
+	7.5,
+	7.5,
+	3.0,
+	-7.5,
+	7.5,
+	3.0;
+
+Construction,
+  EXTERIOR WALL,   !- name
+  M01 100mm brick,   !- - Layer 1
+  M15 200mm heavyweight concrete,   !- - Layer 2
+  I02 50mm insulation board,   !- - Layer 3
+  F04 Wall air space resistance,   !- - Layer 4
+  G01a 19mm gypsum board;   !-
+
+Material,
+  M01 100MM BRICK,   !- name
+  MediumRough,   !- - Roughness
+  0.1016,   !- - Thickness {m}
+  0.89,   !- - Conductivity {W/m-K}
+  1920,   !- - Density {kg/m3}
+  790,   !- - Specific Heat {J/kg-K}
+  0.9,   !- - Thermal Absorptance
+  0.7,   !- - Solar Absorptance
+  0.7;   !-
+
+Material,
+  M15 200MM HEAVYWEIGHT CONCRETE,   !- name
+  MediumRough,   !- - Roughness
+  0.2032,   !- - Thickness {m}
+  1.95,   !- - Conductivity {W/m-K}
+  2240,   !- - Density {kg/m3}
+  900,   !- - Specific Heat {J/kg-K}
+  0.9,   !- - Thermal Absorptance
+  0.7,   !- - Solar Absorptance
+  0.7;   !-
+
+Material,
+  I02 50MM INSULATION BOARD,   !- name
+  MediumRough,   !- - Roughness
+  0.0508,   !- - Thickness {m}
+  0.03,   !- - Conductivity {W/m-K}
+  43,   !- - Density {kg/m3}
+  1210,   !- - Specific Heat {J/kg-K}
+  0.9,   !- - Thermal Absorptance
+  0.7,   !- - Solar Absorptance
+  0.7;   !-
+
+Material:AirGap,
+  F04 WALL AIR SPACE RESISTANCE,   !- name
+  0.15;   !-
+
+Material,
+  G01A 19MM GYPSUM BOARD,   !- name
+  MediumSmooth,   !- - Roughness
+  0.019,   !- - Thickness {m}
+  0.16,   !- - Conductivity {W/m-K}
+  800,   !- - Density {kg/m3}
+  1090,   !- - Specific Heat {J/kg-K}
+  0.9,   !- - Thermal Absorptance
+  0.4,   !- - Solar Absorptance
+  0.4;   !-
+
+Construction,
+  INTERIOR WALL,   !- name
+  G01a 19mm gypsum board,   !- - Layer 1
+  F04 Wall air space resistance,   !- - Layer 2
+  G01a 19mm gypsum board;   !-
+
+Construction,
+  INTERIOR FLOOR,   !- name
+  F16 Acoustic tile,   !- - Layer 1
+  F05 Ceiling air space resistance,   !- - Layer 2
+  M11 100mm lightweight concrete;   !-
+
+Material,
+  F16 ACOUSTIC TILE,   !- name
+  MediumSmooth,   !- - Roughness
+  0.0191,   !- - Thickness {m}
+  0.06,   !- - Conductivity {W/m-K}
+  368,   !- - Density {kg/m3}
+  590.000000000002,   !- - Specific Heat {J/kg-K}
+  0.9,   !- - Thermal Absorptance
+  0.3,   !- - Solar Absorptance
+  0.3;   !-
+
+Material:AirGap,
+  F05 CEILING AIR SPACE RESISTANCE,   !- name
+  0.18;   !-
+
+Material,
+  M11 100MM LIGHTWEIGHT CONCRETE,   !- name
+  MediumRough,   !- - Roughness
+  0.1016,   !- - Thickness {m}
+  0.53,   !- - Conductivity {W/m-K}
+  1280,   !- - Density {kg/m3}
+  840.000000000002,   !- - Specific Heat {J/kg-K}
+  0.9,   !- - Thermal Absorptance
+  0.5,   !- - Solar Absorptance
+  0.5;   !-
+
+Construction,
+  EXTERIOR ROOF,   !- name
+  M11 100mm lightweight concrete,   !- - Layer 1
+  F05 Ceiling air space resistance,   !- - Layer 2
+  F16 Acoustic tile;   !-
+
+Construction,
+  EXTERIOR WINDOW,   !- name
+  Clear 3mm,   !- - Layer 1
+  Air 13mm,   !- - Layer 2
+  Clear 3mm;   !-
+
+WindowMaterial:Glazing,
+  CLEAR 3MM,   !- name
+  SpectralAverage,   !- - Optical Data Type
+  ,   !- - Window Glass Spectral Data Set Name
+  0.00299999999999999,   !- - Thickness {m}
+  0.837,   !- - Solar Transmittance at Normal Incidence
+  0.075,   !- - Front Side Solar Reflectance at Normal Incidence
+  0,   !- - Back Side Solar Reflectance at Normal Incidence
+  0.898,   !- - Visible Transmittance at Normal Incidence
+  0.081,   !- - Front Side Visible Reflectance at Normal Incidence
+  0,   !- - Back Side Visible Reflectance at Normal Incidence
+  0,   !- - Infrared Transmittance at Normal Incidence
+  0.84,   !- - Front Side Infrared Hemispherical Emissivity
+  0.84,   !- - Back Side Infrared Hemispherical Emissivity
+  0.9,   !- - Conductivity {W/m-K}
+  1,   !- - Dirt Correction Factor for Solar and Visible Transmittance
+  No;   !-
+
+WindowMaterial:Gas,
+  AIR 13MM,   !- name
+  Air,   !- - Gas Type
+  0.0127;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL BLDG OCC,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {1c0a4af7-3333-4c08-b441-047f9f20d05b},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  1,   !- - End Month 1
+  3,   !- - End Day 1
+  Schedule:Week:Daily {37fab76a-f10f-4a82-a021-ab09f5727a73},   !- - Schedule:Week Name 2
+  1,   !- - Start Month 2
+  4,   !- - Start Day 2
+  6,   !- - End Month 2
+  27,   !- - End Day 2
+  Schedule:Week:Daily {40b61b30-37ce-4f86-ac03-22e75f4f5796},   !- - Schedule:Week Name 3
+  6,   !- - Start Month 3
+  28,   !- - Start Day 3
+  7,   !- - End Month 3
+  4,   !- - End Day 3
+  Schedule:Week:Daily {4dd844d7-0613-4d50-b1dc-12dfd663ca92},   !- - Schedule:Week Name 4
+  7,   !- - Start Month 4
+  5,   !- - Start Day 4
+  8,   !- - End Month 4
+  29,   !- - End Day 4
+  Schedule:Week:Daily {119f04d6-6191-4aae-9d5f-32d14b9cf4b0},   !- - Schedule:Week Name 5
+  8,   !- - Start Month 5
+  30,   !- - Start Day 5
+  9,   !- - End Month 5
+  5,   !- - End Day 5
+  Schedule:Week:Daily {db3378bb-953a-49b5-983d-10595e09000c},   !- - Schedule:Week Name 6
+  9,   !- - Start Month 6
+  6,   !- - Start Day 6
+  12,   !- - End Month 6
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL HTGSETP BATHCORRMECHKITCHEN,   !- name
+  Temperature 29,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {d51806e0-f9be-43cf-9790-de0efea29e38},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  12,   !- - End Month 1
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL BLDG LIGHT,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {d8fd4fb5-8b12-45b4-86ee-db032631dc6a},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  1,   !- - End Month 1
+  3,   !- - End Day 1
+  Schedule:Week:Daily {35dd5338-c921-4bf5-970e-2b59ab211b7b},   !- - Schedule:Week Name 2
+  1,   !- - Start Month 2
+  4,   !- - Start Day 2
+  6,   !- - End Month 2
+  27,   !- - End Day 2
+  Schedule:Week:Daily {b31fd85f-ae02-47c6-b484-bd1098288aaf},   !- - Schedule:Week Name 3
+  6,   !- - Start Month 3
+  28,   !- - Start Day 3
+  7,   !- - End Month 3
+  4,   !- - End Day 3
+  Schedule:Week:Daily {08c10000-2071-4152-9a65-d77393ab3fe0},   !- - Schedule:Week Name 4
+  7,   !- - Start Month 4
+  5,   !- - Start Day 4
+  8,   !- - End Month 4
+  29,   !- - End Day 4
+  Schedule:Week:Daily {f12d2dd0-d7ba-4778-874a-96dc409060d7},   !- - Schedule:Week Name 5
+  8,   !- - Start Month 5
+  30,   !- - Start Day 5
+  9,   !- - End Month 5
+  5,   !- - End Day 5
+  Schedule:Week:Daily {5cd4b8b0-f13c-4b76-892b-8bafb22f8108},   !- - Schedule:Week Name 6
+  9,   !- - Start Month 6
+  6,   !- - Start Day 6
+  12,   !- - End Month 6
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL CLGSETP BATHCORRMECHKITCHEN,   !- name
+  Temperature 27,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {3ac01199-d3c6-46f2-a998-0d7db11684aa},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  12,   !- - End Month 1
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL BLDG EQUIP,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {e5c1fb92-d6b6-4e1a-ace0-a7b8af807b8a},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  1,   !- - End Month 1
+  3,   !- - End Day 1
+  Schedule:Week:Daily {bf4536d2-2552-4b10-b106-4d8ebc69de85},   !- - Schedule:Week Name 2
+  1,   !- - Start Month 2
+  4,   !- - Start Day 2
+  6,   !- - End Month 2
+  27,   !- - End Day 2
+  Schedule:Week:Daily {df397a05-8c15-4deb-ac72-1b04380d37c0},   !- - Schedule:Week Name 3
+  6,   !- - Start Month 3
+  28,   !- - Start Day 3
+  7,   !- - End Month 3
+  4,   !- - End Day 3
+  Schedule:Week:Daily {1949d490-236b-4c9d-890f-0cb918e83228},   !- - Schedule:Week Name 4
+  7,   !- - Start Month 4
+  5,   !- - Start Day 4
+  8,   !- - End Month 4
+  29,   !- - End Day 4
+  Schedule:Week:Daily {836f2b4c-3b39-4572-b0b7-63e660e43945},   !- - Schedule:Week Name 5
+  8,   !- - Start Month 5
+  30,   !- - Start Day 5
+  9,   !- - End Month 5
+  5,   !- - End Day 5
+  Schedule:Week:Daily {e63fff24-f8e5-4afa-975d-48a8ac73dce6},   !- - Schedule:Week Name 6
+  9,   !- - Start Month 6
+  6,   !- - Start Day 6
+  12,   !- - End Month 6
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL ACTIVITY,   !- name
+  ActivityLevel 2,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {d329c68c-40a0-4a09-8b59-081e0f51aa34},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  12,   !- - End Month 1
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL INFIL,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {48c65d80-1748-42bb-aa56-793af198d15f},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  12,   !- - End Month 1
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL HTGSETP,   !- name
+  Temperature 22,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {e00c158b-6b6f-41f4-81d8-aab173e94fe1},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  6,   !- - End Month 1
+  27,   !- - End Day 1
+  Schedule:Week:Daily {0534f250-16c3-4281-b57a-0be0a51927a2},   !- - Schedule:Week Name 2
+  6,   !- - Start Month 2
+  28,   !- - Start Day 2
+  7,   !- - End Month 2
+  4,   !- - End Day 2
+  Schedule:Week:Daily {94c92c4b-791e-4290-9924-37cc688971f6},   !- - Schedule:Week Name 3
+  7,   !- - Start Month 3
+  5,   !- - Start Day 3
+  8,   !- - End Month 3
+  29,   !- - End Day 3
+  Schedule:Week:Daily {f0608c21-2eb2-455e-b687-fe8fa25eb3d3},   !- - Schedule:Week Name 4
+  8,   !- - Start Month 4
+  30,   !- - Start Day 4
+  9,   !- - End Month 4
+  5,   !- - End Day 4
+  Schedule:Week:Daily {ad6a1b1e-d7b1-459e-b1d6-480eb1fa2127},   !- - Schedule:Week Name 5
+  9,   !- - Start Month 5
+  6,   !- - Start Day 5
+  12,   !- - End Month 5
+  31;   !-
+
+Schedule:Year,
+  SECONDARYSCHOOL CLGSETP,   !- name
+  Temperature 21,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {0d35d20d-a2ec-4a20-be94-512f6c5f0fec},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  6,   !- - End Month 1
+  27,   !- - End Day 1
+  Schedule:Week:Daily {1db7daac-68b5-4a41-99c5-0bf69043e580},   !- - Schedule:Week Name 2
+  6,   !- - Start Month 2
+  28,   !- - Start Day 2
+  7,   !- - End Month 2
+  4,   !- - End Day 2
+  Schedule:Week:Daily {0074a363-96f6-4527-9f73-5a4c47dc67e5},   !- - Schedule:Week Name 3
+  7,   !- - Start Month 3
+  5,   !- - Start Day 3
+  8,   !- - End Month 3
+  29,   !- - End Day 3
+  Schedule:Week:Daily {1a50514b-ed33-4114-bf24-84a3ef8ac58e},   !- - Schedule:Week Name 4
+  8,   !- - Start Month 4
+  30,   !- - Start Day 4
+  9,   !- - End Month 4
+  5,   !- - End Day 4
+  Schedule:Week:Daily {e7f3756b-2e96-45d3-974a-04acd6ec428e},   !- - Schedule:Week Name 5
+  9,   !- - Start Month 5
+  6,   !- - Start Day 5
+  12,   !- - End Month 5
+  31;   !-
+
+Schedule:Year,
+  ALWAYS ON,   !- name
+  On/Off,   !- - Schedule Type Limits Name
+  Schedule:Week:Daily {c1fbc509-bd2c-4eac-bbfe-959d5c6e26d5},   !- - Schedule:Week Name 1
+  1,   !- - Start Month 1
+  1,   !- - Start Day 1
+  12,   !- - End Month 1
+  31;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {1C0A4AF7-3333-4C08-B441-047F9F20D05B},   !- name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 5 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Occ Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {37FAB76A-F10F-4A82-A021-AB09F5727A73},   !- name
+  SecondarySchool Bldg Occ Rule 5 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 5 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Occ Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {40B61B30-37CE-4F86-AC03-22E75F4F5796},   !- name
+  SecondarySchool Bldg Occ Rule 5 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 3 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Occ Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {4DD844D7-0613-4D50-B1DC-12DFD663CA92},   !- name
+  SecondarySchool Bldg Occ Rule 3 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 3 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Occ Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {119F04D6-6191-4AAE-9D5F-32D14B9CF4B0},   !- name
+  SecondarySchool Bldg Occ Rule 3 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 4 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Occ Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {DB3378BB-953A-49B5-983D-10595E09000C},   !- name
+  SecondarySchool Bldg Occ Rule 1 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Occ Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Occ Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Occ Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {D51806E0-F9BE-43CF-9790-DE0EFEA29E38},   !- name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool HtgSetp BathCorrMechKitchen Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {D8FD4FB5-8B12-45B4-86EE-DB032631DC6A},   !- name
+  SecondarySchool Bldg Light Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 5 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Light Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {35DD5338-C921-4BF5-970E-2B59AB211B7B},   !- name
+  SecondarySchool Bldg Light Rule 5 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 5 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Light Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {B31FD85F-AE02-47C6-B484-BD1098288AAF},   !- name
+  SecondarySchool Bldg Light Rule 5 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 3 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Light Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {08C10000-2071-4152-9A65-D77393AB3FE0},   !- name
+  SecondarySchool Bldg Light Rule 3 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 3 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Light Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {F12D2DD0-D7BA-4778-874A-96DC409060D7},   !- name
+  SecondarySchool Bldg Light Rule 3 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 4 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Light Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {5CD4B8B0-F13C-4B76-892B-8BAFB22F8108},   !- name
+  SecondarySchool Bldg Light Rule 1 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Light Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Light Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Light Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {3AC01199-D3C6-46F2-A998-0D7DB11684AA},   !- name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool ClgSetp BathCorrMechKitchen Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {E5C1FB92-D6B6-4E1A-ACE0-A7B8AF807B8A},   !- name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 5 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Equip Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {BF4536D2-2552-4B10-B106-4D8EBC69DE85},   !- name
+  SecondarySchool Bldg Equip Rule 5 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 5 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Equip Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {DF397A05-8C15-4DEB-AC72-1B04380D37C0},   !- name
+  SecondarySchool Bldg Equip Rule 5 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 3 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Equip Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {1949D490-236B-4C9D-890F-0CB918E83228},   !- name
+  SecondarySchool Bldg Equip Rule 3 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 3 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Equip Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {836F2B4C-3B39-4572-B0B7-63E660E43945},   !- name
+  SecondarySchool Bldg Equip Rule 3 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 4 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Equip Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {E63FFF24-F8E5-4AFA-975D-48A8AC73DCE6},   !- name
+  SecondarySchool Bldg Equip Rule 1 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Bldg Equip Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Bldg Equip Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Bldg Equip Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {D329C68C-40A0-4A09-8B59-081E0F51AA34},   !- name
+  SecondarySchool Activity Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Activity Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Activity Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Activity Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Activity Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {48C65D80-1748-42BB-AA56-793AF198D15F},   !- name
+  SecondarySchool Infil Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool Infil Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool Infil Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool Infil Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool Infil Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {E00C158B-6B6F-41F4-81D8-AAB173E94FE1},   !- name
+  SecondarySchool HtgSetp Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool HtgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {0534F250-16C3-4281-B57A-0BE0A51927A2},   !- name
+  SecondarySchool HtgSetp Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool HtgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {94C92C4B-791E-4290-9924-37CC688971F6},   !- name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool HtgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {F0608C21-2EB2-455E-B687-FE8FA25EB3D3},   !- name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 2 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool HtgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {AD6A1B1E-D7B1-459E-B1D6-480EB1FA2127},   !- name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool HtgSetp Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool HtgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool HtgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {0D35D20D-A2EC-4A20-BE94-512F6C5F0FEC},   !- name
+  SecondarySchool ClgSetp Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool ClgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {1DB7DAAC-68B5-4A41-99C5-0BF69043E580},   !- name
+  SecondarySchool ClgSetp Default Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool ClgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {0074A363-96F6-4527-9F73-5A4C47DC67E5},   !- name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool ClgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {1A50514B-ED33-4114-BF24-84A3EF8AC58E},   !- name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 2 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool ClgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {E7F3756B-2E96-45D3-974A-04ACD6EC428E},   !- name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Sunday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Monday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Tuesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Wednesday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Thursday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Friday Schedule:Day Name
+  SecondarySchool ClgSetp Rule 1 Day Schedule,   !- - Saturday Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - Holiday Schedule:Day Name
+  SecondarySchool ClgSetp Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  SecondarySchool ClgSetp Default Schedule;   !-
+
+Schedule:Week:Daily,
+  SCHEDULE:WEEK:DAILY {C1FBC509-BD2C-4EAC-BBFE-959D5C6E26D5},   !- name
+  Always On Default Schedule,   !- - Sunday Schedule:Day Name
+  Always On Default Schedule,   !- - Monday Schedule:Day Name
+  Always On Default Schedule,   !- - Tuesday Schedule:Day Name
+  Always On Default Schedule,   !- - Wednesday Schedule:Day Name
+  Always On Default Schedule,   !- - Thursday Schedule:Day Name
+  Always On Default Schedule,   !- - Friday Schedule:Day Name
+  Always On Default Schedule,   !- - Saturday Schedule:Day Name
+  Always On Default Schedule,   !- - Holiday Schedule:Day Name
+  Always On Summer Design Day,   !- - SummerDesignDay Schedule:Day Name
+  Always On Winter Design Day,   !- - WinterDesignDay Schedule:Day Name
+  Always On Default Schedule,   !- - CustomDay1 Schedule:Day Name
+  Always On Default Schedule;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC DEFAULT SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0,   !- - Value Until Time 1
+  16:00,   !- - Time 2 {hh:mm}
+  0.7,   !- - Value Until Time 2
+  21:00,   !- - Time 3 {hh:mm}
+  0.15,   !- - Value Until Time 3
+  24:00,   !- - Time 4 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC RULE 5 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC SUMMER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0,   !- - Value Until Time 1
+  16:00,   !- - Time 2 {hh:mm}
+  0.7,   !- - Value Until Time 2
+  21:00,   !- - Time 3 {hh:mm}
+  0.15,   !- - Value Until Time 3
+  24:00,   !- - Time 4 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC WINTER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC RULE 4 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  0.15,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC RULE 3 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC RULE 2 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0,   !- - Value Until Time 1
+  16:00,   !- - Time 2 {hh:mm}
+  0.7,   !- - Value Until Time 2
+  21:00,   !- - Time 3 {hh:mm}
+  0.15,   !- - Value Until Time 3
+  24:00,   !- - Time 4 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG OCC RULE 1 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP BATHCORRMECHKITCHEN DEFAULT SCHEDULE,   !- name
+  Temperature 29,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  16;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP BATHCORRMECHKITCHEN SUMMER DESIGN DAY,   !- name
+  Temperature 29,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  16;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP BATHCORRMECHKITCHEN WINTER DESIGN DAY,   !- name
+  Temperature 29,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  06:00,   !- - Time 1 {hh:mm}
+  16,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  21,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  16;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT DEFAULT SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  0.1773,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  0.9,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT RULE 5 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT SUMMER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  0.1773,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  0.9,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT WINTER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT RULE 4 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0.1773,   !- - Value Until Time 1
+  20:00,   !- - Time 2 {hh:mm}
+  0.5,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT RULE 3 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT RULE 2 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  0.1773,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  0.9,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG LIGHT RULE 1 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.1773;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP BATHCORRMECHKITCHEN DEFAULT SCHEDULE,   !- name
+  Temperature 27,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  27;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP BATHCORRMECHKITCHEN SUMMER DESIGN DAY,   !- name
+  Temperature 27,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  06:00,   !- - Time 1 {hh:mm}
+  27,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  24,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  27;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP BATHCORRMECHKITCHEN WINTER DESIGN DAY,   !- name
+  Temperature 27,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  27;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP DEFAULT SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0.35,   !- - Value Until Time 1
+  17:00,   !- - Time 2 {hh:mm}
+  0.95,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.35;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP RULE 5 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.35;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP SUMMER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0.35,   !- - Value Until Time 1
+  17:00,   !- - Time 2 {hh:mm}
+  0.95,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.35;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP WINTER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.35;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP RULE 4 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0.25,   !- - Value Until Time 1
+  17:00,   !- - Time 2 {hh:mm}
+  0.5,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.25;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP RULE 3 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.25;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP RULE 2 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  08:00,   !- - Time 1 {hh:mm}
+  0.35,   !- - Value Until Time 1
+  17:00,   !- - Time 2 {hh:mm}
+  0.95,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  0.35;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL BLDG EQUIP RULE 1 DAY SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  0.35;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL ACTIVITY DEFAULT SCHEDULE,   !- name
+  ActivityLevel 2,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  120;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL ACTIVITY SUMMER DESIGN DAY,   !- name
+  ActivityLevel 2,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  120;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL ACTIVITY WINTER DESIGN DAY,   !- name
+  ActivityLevel 2,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  120;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL INFIL DEFAULT SCHEDULE,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  1,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  0.5,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  1;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL INFIL SUMMER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  1,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  0.5,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  1;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL INFIL WINTER DESIGN DAY,   !- name
+  Fraction,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  1,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  0.5,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  1;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP DEFAULT SCHEDULE,   !- name
+  Temperature 22,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  06:00,   !- - Time 1 {hh:mm}
+  16,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  21,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  16;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP SUMMER DESIGN DAY,   !- name
+  Temperature 22,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  16;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP WINTER DESIGN DAY,   !- name
+  Temperature 22,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  21;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP RULE 2 DAY SCHEDULE,   !- name
+  Temperature 22,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  16,   !- - Value Until Time 1
+  18:00,   !- - Time 2 {hh:mm}
+  21,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  16;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL HTGSETP RULE 1 DAY SCHEDULE,   !- name
+  Temperature 22,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  06:00,   !- - Time 1 {hh:mm}
+  16,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  21,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  16;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP DEFAULT SCHEDULE,   !- name
+  Temperature 21,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  06:00,   !- - Time 1 {hh:mm}
+  27,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  24,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  27;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP SUMMER DESIGN DAY,   !- name
+  Temperature 21,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  24;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP WINTER DESIGN DAY,   !- name
+  Temperature 21,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  27;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP RULE 2 DAY SCHEDULE,   !- name
+  Temperature 21,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  07:00,   !- - Time 1 {hh:mm}
+  27,   !- - Value Until Time 1
+  18:00,   !- - Time 2 {hh:mm}
+  24,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  27;   !-
+
+Schedule:Day:Interval,
+  SECONDARYSCHOOL CLGSETP RULE 1 DAY SCHEDULE,   !- name
+  Temperature 21,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  06:00,   !- - Time 1 {hh:mm}
+  27,   !- - Value Until Time 1
+  21:00,   !- - Time 2 {hh:mm}
+  24,   !- - Value Until Time 2
+  24:00,   !- - Time 3 {hh:mm}
+  27;   !-
+
+Schedule:Day:Interval,
+  ALWAYS ON DEFAULT SCHEDULE,   !- name
+  On/Off,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  1;   !-
+
+Schedule:Day:Interval,
+  ALWAYS ON SUMMER DESIGN DAY,   !- name
+  On/Off,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  1;   !-
+
+Schedule:Day:Interval,
+  ALWAYS ON WINTER DESIGN DAY,   !- name
+  On/Off,   !- - Schedule Type Limits Name
+  No,   !- - Interpolate to Timestep
+  24:00,   !- - Time 1 {hh:mm}
+  1;   !-
+
+
+HVACTemplate:Zone:IdealLoadsAirSystem,
+	classroom_0,	!- Zone Name
+	classroom_0_HVAC,	!- Template Thermostat Name
+	,  !- Availability Schedule Name
+	40,  !- Heating Supply Air Temp {C}
+	,  !- Cooling Supply Air Temp {C}
+	0.008,  !- Max Heating Supply Air Humidity Ratio {kg-H2O/kg-air}
+	0.0085,  !- Min Cooling Supply Air Humidity Ratio {kg-H2O/kg-air}
+	,  !- Heating Limit
+	,  !- Maximum Heating Air Flow Rate {m3/s}
+	,  !- Maximum Sensible Heat Capacity
+	LimitFlowRate,  !- Cooling Limit
+	autosize,  !- Maximum Cooling Air Flow Rate {m3/s}
+	,  !- Maximum Total Cooling Capacity
+	,  !- Heating Availability Schedule
+	,  !- Cooling Availability Schedule
+	None,  !- Dehumidification Control Type
+	,  !- Cooling Sensible Heat Ratio
+	,  !- Dehumidification Setpoint
+	None,  !- Humidification Control Type
+	,  !- Humidification Setpoint
+	DetailedSpecification,  !- Outdoor Air Method
+	,  !- Outdoor Air Flow Rate Per Person
+	,  !- Outdoor Air Flow Rate Per Floor Zone Area
+	,  !- Outdoor Air Flow Rate Per Zone
+	classroom_0OutdoorAirCntrl,  !- Design Specification Outdoor Air Object Name
+	,  !- Demand Controlled Ventilation Type
+	DifferentialDryBulb,  !- Outdoor Air Economizer Type
+	,  !- Heat Recovery Type
+	,  !- Sensible Heat Recovery Effectiveness
+	;  !- Latent Heat Recovery Effectiveness
+
+HVACTemplate:Thermostat,
+	classroom_0_HVAC,                    !- Name
+	SecondarySchool HtgSetp,          !- Heating Setpoint Schedule Name
+	'', !- Constant Heating Setpoint {C}
+	SecondarySchool ClgSetp,          !- Cooling Setpoint Schedule Name
+	''; !- Constant Cooling Setpoint {C}
+
+DesignSpecification:OutdoorAir,
+	classroom_0OutdoorAirCntrl,                    !- Name
+	Sum,          !- Outdoor Air Method
+	0.0047190000000000001, !- Outdoor Air Flow per Person {m3/s-person}
+	0.00060960120000000005,          !- Outdoor Air Flow per Zone Floor Area {m3/s-m2}
+	0, !- Outdoor Air Flow per Zone {m3/s}
+	0, !- Outdoor Air Flow Air Changes per Hour {1/hr}
+	; !- Outdoor Air Flow Rate Fraction Schedule Name
+
+ElectricEquipment,
+	classroom_0ElectricEquipment,  !- Name
+	classroom_0,  !- Zone or ZoneList Name
+	SecondarySchool Bldg Equip,  !- Schedule Name
+	Watts/Area, !- Design Level Calculation Method
+	, !- Design Level {W}
+	7.31949348, !- Watts per Zone Floor Area {W/m2}
+	,   !- Watts per Person {W/person}
+	,                        !- Fraction Latent
+	,                        !- Fraction Radiant
+	,                        !- Fraction Lost
+	ElectricEquipment;       !- End-Use Subcategory
+
+People,
+	classroom_0OfficePeople,  !- Name
+	classroom_0,  !- Zone or ZoneList Name
+	SecondarySchool Bldg Occ,  !- Number of People Schedule Name
+	People/Area, !- Number of People Calculation Method
+	, !- Number of People
+	0.24993917441999999,  !- People per Zone Floor Area {person/m2}
+	,  !- Zone Floor Area per Person {m2/person}
+	0.29999999999999999,     !- Fraction Radiant
+	,!- Sensible Heat Fraction
+	SecondarySchool Activity;!- Activity Level Schedule Name
+
+Lights,
+	classroom_0OfficeLights,  !- Name
+	classroom_0,  !- Zone or ZoneList Name
+	SecondarySchool Bldg Light,  !- Schedule Name
+	Watts/Area,       !- Design Level Calculation Method
+	,       !- Lighting Level {W}
+	15.069545399999999,       !- Watts per Zone Floor Area {W/m2}
+	,         !- Watts per Person {W/person}
+	,                       !- Return Air Fraction
+	,                       !- Fraction Radiant
+	;                       !- Fraction Visible
+
+ZoneInfiltration:DesignFlowRate,
+	classroom_0_Infiltration,  !- Name
+	classroom_0,  !- Zone or ZoneList Name
+	SecondarySchool Infil,  !- Schedule Name
+	Flow/Area,  !- Design Flow Rate Calculation Method
+	,   !- Design Flow Rate {m3/s}
+	0.00022656844600000002,  !- Flow per Zone Floor Area {m3/s-m2}
+	, !- Flow per Exterior Surface Area {m3/s-m2}
+	,    !- Air Changes per Hour
+	,                        !- Constant Term Coefficient
+	,                        !- Temperature Term Coefficient
+	,                        !- Velocity Term Coefficient
+	;                        !- Velocity Squared Term Coefficient
+
+HVACTemplate:Zone:IdealLoadsAirSystem,
+	adjacency_0,	!- Zone Name
+	adjacency_0_HVAC,	!- Template Thermostat Name
+	,  !- Availability Schedule Name
+	40,  !- Heating Supply Air Temp {C}
+	,  !- Cooling Supply Air Temp {C}
+	0.008,  !- Max Heating Supply Air Humidity Ratio {kg-H2O/kg-air}
+	0.0085,  !- Min Cooling Supply Air Humidity Ratio {kg-H2O/kg-air}
+	,  !- Heating Limit
+	,  !- Maximum Heating Air Flow Rate {m3/s}
+	,  !- Maximum Sensible Heat Capacity
+	LimitFlowRate,  !- Cooling Limit
+	autosize,  !- Maximum Cooling Air Flow Rate {m3/s}
+	,  !- Maximum Total Cooling Capacity
+	,  !- Heating Availability Schedule
+	,  !- Cooling Availability Schedule
+	None,  !- Dehumidification Control Type
+	,  !- Cooling Sensible Heat Ratio
+	,  !- Dehumidification Setpoint
+	None,  !- Humidification Control Type
+	,  !- Humidification Setpoint
+	DetailedSpecification,  !- Outdoor Air Method
+	,  !- Outdoor Air Flow Rate Per Person
+	,  !- Outdoor Air Flow Rate Per Floor Zone Area
+	,  !- Outdoor Air Flow Rate Per Zone
+	adjacency_0OutdoorAirCntrl,  !- Design Specification Outdoor Air Object Name
+	,  !- Demand Controlled Ventilation Type
+	DifferentialDryBulb,  !- Outdoor Air Economizer Type
+	,  !- Heat Recovery Type
+	,  !- Sensible Heat Recovery Effectiveness
+	;  !- Latent Heat Recovery Effectiveness
+
+HVACTemplate:Thermostat,
+	adjacency_0_HVAC,                    !- Name
+	SecondarySchool HtgSetp BathCorrMechKitchen,          !- Heating Setpoint Schedule Name
+	'', !- Constant Heating Setpoint {C}
+	SecondarySchool ClgSetp BathCorrMechKitchen,          !- Cooling Setpoint Schedule Name
+	''; !- Constant Cooling Setpoint {C}
+
+DesignSpecification:OutdoorAir,
+	adjacency_0OutdoorAirCntrl,                    !- Name
+	Sum,          !- Outdoor Air Method
+	0.0, !- Outdoor Air Flow per Person {m3/s-person}
+	0.00030480060000000002,          !- Outdoor Air Flow per Zone Floor Area {m3/s-m2}
+	0, !- Outdoor Air Flow per Zone {m3/s}
+	0, !- Outdoor Air Flow Air Changes per Hour {1/hr}
+	; !- Outdoor Air Flow Rate Fraction Schedule Name
+
+ElectricEquipment,
+	adjacency_0ElectricEquipment,  !- Name
+	adjacency_0,  !- Zone or ZoneList Name
+	SecondarySchool Bldg Equip,  !- Schedule Name
+	Watts/Area, !- Design Level Calculation Method
+	, !- Design Level {W}
+	2.9062694700000002, !- Watts per Zone Floor Area {W/m2}
+	,   !- Watts per Person {W/person}
+	,                        !- Fraction Latent
+	,                        !- Fraction Radiant
+	,                        !- Fraction Lost
+	ElectricEquipment;       !- End-Use Subcategory
+
+People,
+	adjacency_0OfficePeople,  !- Name
+	adjacency_0,  !- Zone or ZoneList Name
+	SecondarySchool Bldg Occ,  !- Number of People Schedule Name
+	People/Area, !- Number of People Calculation Method
+	, !- Number of People
+	0.10021247691,  !- People per Zone Floor Area {person/m2}
+	,  !- Zone Floor Area per Person {m2/person}
+	0.29999999999999999,     !- Fraction Radiant
+	,!- Sensible Heat Fraction
+	SecondarySchool Activity;!- Activity Level Schedule Name
+
+Lights,
+	adjacency_0OfficeLights,  !- Name
+	adjacency_0,  !- Zone or ZoneList Name
+	SecondarySchool Bldg Light,  !- Schedule Name
+	Watts/Area,       !- Design Level Calculation Method
+	,       !- Lighting Level {W}
+	5.3819805,       !- Watts per Zone Floor Area {W/m2}
+	,         !- Watts per Person {W/person}
+	,                       !- Return Air Fraction
+	,                       !- Fraction Radiant
+	;                       !- Fraction Visible
+
+ZoneInfiltration:DesignFlowRate,
+	adjacency_0_Infiltration,  !- Name
+	adjacency_0,  !- Zone or ZoneList Name
+	SecondarySchool Infil,  !- Schedule Name
+	Flow/Area,  !- Design Flow Rate Calculation Method
+	,   !- Design Flow Rate {m3/s}
+	0.00022656844600000002,  !- Flow per Zone Floor Area {m3/s-m2}
+	, !- Flow per Exterior Surface Area {m3/s-m2}
+	,    !- Air Changes per Hour
+	,                        !- Constant Term Coefficient
+	,                        !- Temperature Term Coefficient
+	,                        !- Velocity Term Coefficient
+	;                        !- Velocity Squared Term Coefficient
+
+Output:Surfaces:List,
+	Details;                 !- Report Type
+
+Output:VariableDictionary,
+	regular;                 !- Key Field
+
+OutputControl:Table:Style,CommaAndHTML,JtoKWH;
+Output:Table:SummaryReports,AllSummary;
+Output:Variable,*,Zone Ideal Loads Supply Air Total Cooling Energy, hourly;
+Output:Variable,*,Zone Ideal Loads Supply Air Total Heating Energy, hourly;
+Output:Variable,*,Cooling Coil Electric Energy, hourly;
+Output:Variable,*,Chiller Electric Energy, hourly;
+Output:Variable,*,Boiler Heating Energy, hourly;
+Output:Variable,*,Heating Coil Total Heating Energy, hourly;
+Output:Variable,*,Heating Coil Gas Energy, hourly;
+Output:Variable,*,Heating Coil Electric Energy, hourly;
+Output:Variable,*,Humidifier Electric Energy, hourly;
+Output:Variable,*,Fan Electric Energy, hourly;
+Output:Variable,*,Zone Ventilation Fan Electric Energy, hourly;
+Output:Variable,*,Zone Lights Electric Energy, hourly;
+Output:Variable,*,Zone Electric Equipment Electric Energy, hourly;
+Output:Variable,*,Earth Tube Fan Electric Energy, hourly;
+Output:Variable,*,Pump Electric Energy, hourly;
+Output:Variable,*,Zone VRF Air Terminal Cooling Electric Energy, hourly;
+Output:Variable,*,Zone VRF Air Terminal Heating Electric Energy, hourly;
+Output:Variable,*,VRF Heat Pump Cooling Electric Energy, hourly;
+Output:Variable,*,VRF Heat Pump Heating Electric Energy, hourly;
+Output:Variable,*,Zone Windows Total Transmitted Solar Radiation Energy, hourly;
+Output:Variable,*,Zone Ventilation Sensible Heat Loss Energy, hourly;
+Output:Variable,*,Zone Ventilation Sensible Heat Gain Energy, hourly;
+Output:Variable,*,Zone People Total Heating Energy, hourly;
+Output:Variable,*,Zone Ideal Loads Zone Total Heating Energy, hourly;
+Output:Variable,*,Zone Ideal Loads Zone Total Cooling Energy, hourly;
+Output:Variable,*,Zone Infiltration Total Heat Loss Energy, hourly;
+Output:Variable,*,Zone Infiltration Total Heat Gain Energy, hourly;
+Output:Variable,*,Zone Operative Temperature, hourly;
+Output:Variable,*,Zone Mean Air Temperature, hourly;
+Output:Variable,*,Zone Mean Radiant Temperature, hourly;
+Output:Variable,*,Zone Air Relative Humidity, hourly;
+Output:Variable,*,Zone Ventilation Standard Density Volume Flow Rate, hourly;
+Output:Variable,*,Zone Infiltration Standard Density Volume Flow Rate, hourly;
+Output:Variable,*,Zone Mechanical Ventilation Standard Density Volume Flow Rate, hourly;
+Output:Variable,*,Zone Air Heat Balance Internal Convective Heat Gain Rate, hourly;
+Output:Variable,*,Zone Air Heat Balance Surface Convection Rate, hourly;
+Output:Variable,*,Zone Air Heat Balance System Air Transfer Rate, hourly;
+Output:Variable,*,Surface Window System Solar Transmittance, hourly;
+Output:Variable,*,System Node Standard Density Volume Flow Rate, hourly;
+Output:Variable,*,System Node Temperature, hourly;
+Output:Variable,*,System Node Relative Humidity, hourly;
+Output:Variable,*,Zone Cooling Setpoint Not Met Time, hourly;
+Output:Variable,*,Zone Heating Setpoint Not Met Time, hourly;
+Output:Variable,*,Surface Window Transmitted Beam Solar Radiation Energy, hourly;
+Output:Variable,*,Surface Window Transmitted Diffuse Solar Radiation Energy, hourly;
+Output:Variable,*,Surface Window Transmitted Solar Radiation Energy, hourly;

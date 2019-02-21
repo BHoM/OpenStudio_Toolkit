@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D20A1BBC-E8F9-43D4-BECC-67F21C3C3B2A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BH.oM.EnergyPlus</RootNamespace>
+    <AssemblyName>EnergyPlus_oM</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Architecture_oM">
+      <HintPath>..\..\BHoM\Build\Architecture_oM.dll</HintPath>
+    </Reference>
+    <Reference Include="BHoM">
+      <HintPath>..\..\BHoM\Build\BHoM.dll</HintPath>
+    </Reference>
+    <Reference Include="Environment_oM">
+      <HintPath>..\..\BHoM\Build\Environment_oM.dll</HintPath>
+    </Reference>
+    <Reference Include="Geometry_oM">
+      <HintPath>..\..\BHoM\Build\Geometry_oM.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AirNode.cs" />
+    <Compile Include="Enums\HVACDesignObjects.cs" />
+    <Compile Include="Enums\LocationandClimate.cs" />
+    <Compile Include="Enums\OutputReporting.cs" />
+    <Compile Include="Enums\HVACTemplates.cs" />
+    <Compile Include="Enums\NodeBranchManagement.cs" />
+    <Compile Include="Enums\Schedules.cs" />
+    <Compile Include="Enums\SimulationParameters.cs" />
+    <Compile Include="Enums\InternalGains.cs" />
+    <Compile Include="Enums\MaterialEnums.cs" />
+    <Compile Include="Enums\ThermalZonesandSurfaces.cs" />
+    <Compile Include="Enums\ZoneHVACForcedAirUnits.cs" />
+    <Compile Include="Enums\ZoneAirflow.cs" />
+    <Compile Include="HVACDesignObjects\DesignSpecificationOutdoorAir.cs" />
+    <Compile Include="HVACDesignObjects\SizingParameters.cs" />
+    <Compile Include="HVACTemplates\HVACTemplateThermostat.cs" />
+    <Compile Include="HVACTemplates\HVACTemplateZoneIdealLoadsAirSystem.cs" />
+    <Compile Include="ISchedule.cs" />
+    <Compile Include="InternalGains\ElectricEquipment.cs" />
+    <Compile Include="InternalGains\Lights.cs" />
+    <Compile Include="LocationandClimate\RunPeriod.cs" />
+    <Compile Include="LocationandClimate\SiteLocation.cs" />
+    <Compile Include="LocationandClimate\SizingPeriodDesignDay.cs" />
+    <Compile Include="NaturalVentilationandDuctLeakage\AirflowNetworkDistributionNode.cs" />
+    <Compile Include="NodeBranchManagement\OutdoorAirNode.cs" />
+    <Compile Include="OutputReporting\OutputConstructions.cs" />
+    <Compile Include="OutputReporting\OutputControlTableStyle.cs" />
+    <Compile Include="OutputReporting\OutputDebuggingData.cs" />
+    <Compile Include="OutputReporting\OutputDiagnostics.cs" />
+    <Compile Include="OutputReporting\OutputSurfacesList.cs" />
+    <Compile Include="OutputReporting\OutputVariable.cs" />
+    <Compile Include="OutputReporting\OutputVariableDictionary.cs" />
+    <Compile Include="InternalGains\People.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schedules\ScheduleDayHourly.cs" />
+    <Compile Include="Schedules\ScheduleDayInterval.cs" />
+    <Compile Include="Schedules\ScheduleWeekDaily.cs" />
+    <Compile Include="Schedules\ScheduleTypeLimits.cs" />
+    <Compile Include="Schedules\ScheduleFile.cs" />
+    <Compile Include="Schedules\ScheduleYear.cs" />
+    <Compile Include="Schedules\ScheduleYearVal.cs" />
+    <Compile Include="Schedules\TimeValue.cs" />
+    <Compile Include="SimulationParameters\Version.cs" />
+    <Compile Include="SimulationParameters\Building.cs" />
+    <Compile Include="SimulationParameters\HeatBalanceAlgorithm.cs" />
+    <Compile Include="SimulationParameters\HeatBalanceSettingsConductionFiniteDifference.cs" />
+    <Compile Include="SimulationParameters\ShadowCalculation.cs" />
+    <Compile Include="SimulationParameters\SimulationControl.cs" />
+    <Compile Include="SimulationParameters\SurfaceConvectionAlgorithmInside.cs" />
+    <Compile Include="SimulationParameters\SurfaceConvectionAlgorithmOutside.cs" />
+    <Compile Include="SimulationParameters\Timestep.cs" />
+    <Compile Include="SimulationParameters\ZoneAirHeatBalanceAlgorithm.cs" />
+    <Compile Include="SimulationParameters\ZoneAirMassFlowConservation.cs" />
+    <Compile Include="ThermalZonesandSurfaces\FenestrationSurfaceDetailed.cs" />
+    <Compile Include="ThermalZonesandSurfaces\GlobalGeometryRules.cs" />
+    <Compile Include="ThermalZonesandSurfaces\ShadingBuildingDetailed.cs" />
+    <Compile Include="ThermalZonesandSurfaces\WindowPropertyFrameAndDivider.cs" />
+    <Compile Include="ThermalZonesandSurfaces\BuildingSurfaceDetailed.cs" />
+    <Compile Include="ThermalZonesandSurfaces\Zone.cs" />
+    <Compile Include="OutputReporting\OutputSurfacesDrawing.cs" />
+    <Compile Include="ZoneAirflow\ZoneInfiltrationDesignFlowRate.cs" />
+    <Compile Include="ZoneAirflow\ZoneMixing.cs" />
+    <Compile Include="ZoneAirflow\ZoneVentilationDesignFlowRate.cs" />
+    <Compile Include="ZoneHVACForcedAirUnits\ZoneHVACFourPipeFanCoil.cs" />
+    <Compile Include="ZoneHVACForcedAirUnits\ZoneHVACIdealLoadsAirSystem.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
