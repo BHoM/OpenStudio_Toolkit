@@ -26,11 +26,39 @@ namespace BH.Engine.EnergyPlus
             return new BHG.PolyCurve();
         }
 
+
+        public static BHG.Vector ThreePointNormal(BHG.Point A, BHG.Point B, BHG.Point C, bool flip = false)
+        {
+            BHG.Point U = CartesianSubtraction(B, A);
+            BHG.Point V = CartesianSubtraction(C, A);
+
+            double Nx = U.Y * V.Z - U.Z * V.Y;
+            double Ny = U.Z * V.X - U.X * V.Z;
+            double Nz = U.X * V.Y - U.Y * V.X;
+
+            double magnitude = Math.Sqrt(Math.Pow(Nx, 2) + Math.Pow(Ny, 2) + Math.Pow(Nz, 2));
+
+            if (flip)
+            {
+                return CartesianDivision(Create.Vector(Nx, Ny, Nz), magnitude);
+            }
+
+            return CartesianDivision(Create.Vector(-Nx, -Ny, -Nz), magnitude);
+        }
+
+
         public static BHG.Vector UnitVector(BHG.Vector A, BHG.Vector B)
         {
             BHG.Vector distanceBetween = CartesianSubtraction(B, A);
             return distanceBetween / Math.Sqrt(CartesianSum(CartesianMultiplication(distanceBetween, distanceBetween)));
         }
+
+        public static BHG.Point UnitVector(BHG.Point A, BHG.Point B)
+        {
+            BHG.Point distanceBetween = CartesianSubtraction(B, A);
+            return distanceBetween / Math.Sqrt(CartesianSum(CartesianMultiplication(distanceBetween, distanceBetween)));
+        }
+
 
         public static double CartesianSum(BHG.Vector A)
         {
@@ -40,6 +68,17 @@ namespace BH.Engine.EnergyPlus
         public static double CartesianSum(BHG.Point A)
         {
             return A.X + A.Y + A.Z;
+        }
+
+
+        public static double CartesianProduct(BHG.Vector A)
+        {
+            return A.X * A.Y * A.Z;
+        }
+
+        public static double CartesianProduct(BHG.Point A)
+        {
+            return A.X * A.Y * A.Z;
         }
 
 
