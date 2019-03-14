@@ -5,8 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 using ClipperLib;
+using Polygon = System.Collections.Generic.List<ClipperLib.IntPoint>;
+using Polygons = System.Collections.Generic.List<System.Collections.Generic.List<ClipperLib.IntPoint>>;
 
-using BHG = BH.oM.Geometry;
+using BH.oM.Geometry;
 using BH.Engine.Geometry;
 using BHE = BH.oM.Environment.Elements;
 using BH.oM.Reflection.Attributes;
@@ -16,153 +18,112 @@ namespace BH.Engine.EnergyPlus
 {
     public static partial class Modify
     {
-        [Description("Offsets a planar 3D polyline, translating it to 2D for offseting, then re-translating the offset to 3D")]
-        [Input("tbdPolygon", "TAS TBD Polygon")]
-        [Output("BHoM Geometry Polyline")]
-        public static BHG.PolyCurve OffsetCurve(BHG.PolyCurve polycurve, double offsetDistance)
-        {
-            //Clipper.OffsetPolygons(new List<List<ClipperLib.IntPoint>>(), 0.1, JoinType.jtSquare);
-            //List<BHG.Point> childpts = child.OpeningCurve.IDiscontinuityPoints();
-            return new BHG.PolyCurve();
-        }
-
-
-        public static BHG.Vector ThreePointNormal(BHG.Point A, BHG.Point B, BHG.Point C, bool flip = false)
-        {
-            BHG.Point U = CartesianSubtraction(B, A);
-            BHG.Point V = CartesianSubtraction(C, A);
-
-            double Nx = U.Y * V.Z - U.Z * V.Y;
-            double Ny = U.Z * V.X - U.X * V.Z;
-            double Nz = U.X * V.Y - U.Y * V.X;
-
-            double magnitude = Math.Sqrt(Math.Pow(Nx, 2) + Math.Pow(Ny, 2) + Math.Pow(Nz, 2));
-
-            if (flip)
-            {
-                return CartesianDivision(Create.Vector(Nx, Ny, Nz), magnitude);
-            }
-
-            return CartesianDivision(Create.Vector(-Nx, -Ny, -Nz), magnitude);
-        }
-
-
-        public static BHG.Vector UnitVector(BHG.Vector A, BHG.Vector B)
-        {
-            BHG.Vector distanceBetween = CartesianSubtraction(B, A);
-            return distanceBetween / Math.Sqrt(CartesianSum(CartesianMultiplication(distanceBetween, distanceBetween)));
-        }
-
-        public static BHG.Point UnitVector(BHG.Point A, BHG.Point B)
-        {
-            BHG.Point distanceBetween = CartesianSubtraction(B, A);
-            return distanceBetween / Math.Sqrt(CartesianSum(CartesianMultiplication(distanceBetween, distanceBetween)));
-        }
-
-
-        public static double CartesianSum(BHG.Vector A)
-        {
-            return A.X + A.Y + A.Z;
-        }
-
-        public static double CartesianSum(BHG.Point A)
-        {
-            return A.X + A.Y + A.Z;
-        }
-
-
-        public static double CartesianProduct(BHG.Vector A)
-        {
-            return A.X * A.Y * A.Z;
-        }
-
-        public static double CartesianProduct(BHG.Point A)
-        {
-            return A.X * A.Y * A.Z;
-        }
-
-
-        public static BHG.Vector CartesianAddition(BHG.Vector A, BHG.Vector B)
-        {
-            return Create.Vector(A.X + B.X, A.Y + B.Y, A.Z + B.Z);
-        }
-
-        public static BHG.Vector CartesianAddition(BHG.Vector A, double B)
-        {
-            return Create.Vector(A.X + B, A.Y + B, A.Z + B);
-        }
-
-        public static BHG.Point CartesianAddition(BHG.Point A, BHG.Point B)
-        {
-            return Create.Point(A.X + B.X, A.Y + B.Y, A.Z + B.Z);
-        }
-
-        public static BHG.Point CartesianAddition(BHG.Point A, double B)
-        {
-            return Create.Point(A.X + B, A.Y + B, A.Z + B);
-        }
-
-
-        public static BHG.Vector CartesianSubtraction(BHG.Vector A, BHG.Vector B)
-        {
-            return Create.Vector(A.X - B.X, A.Y - B.Y, A.Z - B.Z);
-        }
-
-        public static BHG.Vector CartesianSubtraction(BHG.Vector A, double B)
-        {
-            return Create.Vector(A.X - B, A.Y - B, A.Z - B);
-        }
-
-        public static BHG.Point CartesianSubtraction(BHG.Point A, BHG.Point B)
+        public static Point PointDifference(Point A, Point B)
         {
             return Create.Point(A.X - B.X, A.Y - B.Y, A.Z - B.Z);
         }
 
-        public static BHG.Point CartesianSubtraction(BHG.Point A, double B)
+        public static Point PointSum(Point A, Point B, Point C)
         {
-            return Create.Point(A.X - B, A.Y - B, A.Z - B);
+            // There must be a better way of doing this. Sum of three/any length list of points/vectors
+            return Create.Point(A.X + B.X + C.X, A.Y + B.Y + C.Y, A.Z + B.Z + C.Z);
         }
 
-
-        public static BHG.Vector CartesianMultiplication(BHG.Vector A, BHG.Vector B)
+        public static Vector ScaleVector(Vector A, double V)
         {
-            return Create.Vector(A.X * B.X, A.Y * B.Y, A.Z * B.Z);
+            return Create.Vector(A.X * V, A.Y * V, A.Z * V);
         }
 
-        public static BHG.Vector CartesianMultiplication(BHG.Vector A, double B)
+        public static Vector NormalizeVector(Vector A)
         {
-            return Create.Vector(A.X * B, A.Y * B, A.Z * B);
+            double length = Math.Sqrt(Math.Pow(A.X, 2) + Math.Pow(A.Y, 2) + Math.Pow(A.Z, 2));
+            return Create.Vector(A.X / length, A.Y / length, A.Z / length);
         }
 
-        public static BHG.Point CartesianMultiplication(BHG.Point A, BHG.Point B)
+        public static Vector VectorDifference(Vector A, Vector B)
         {
-            return Create.Point(A.X * B.X, A.Y * B.Y, A.Z * B.Z);
+            return Create.Vector(A.X - B.X, A.Y - B.Y, A.Z - B.Z);
         }
 
-        public static BHG.Point CartesianMultiplication(BHG.Point A, double B)
+        public static List<PolyCurve> TranslateCurve2DAndBack(Polyline curve)
         {
-            return Create.Point(A.X * B, A.Y * B, A.Z * B);
+            // From here translates the curve to 2D
+            List<Point> points = curve.IDiscontinuityPoints();
+
+            Point loc0 = points[0];
+            Point p1 = points[1];
+            Point p2 = null;
+            if (points.Last() == loc0)
+            {
+                p2 = points[points.Count - 2];
+            }
+            else
+            {
+                p2 = points.Last();
+            }
+
+            Vector locx = Create.Vector(PointDifference(p1, loc0));
+            Vector normal = Geometry.Query.CrossProduct(locx, Create.Vector(PointDifference(p2, loc0)));
+            Vector locy = Geometry.Query.CrossProduct(normal, locx);
+
+            Vector ulocx = NormalizeVector(locx);
+            Vector ulocy = NormalizeVector(locy);
+
+            List<Point> local_coords = new List<Point>();
+            foreach (Point pt in points)
+            {
+                Vector v = Create.Vector(PointDifference(pt, loc0));
+                local_coords.Add(Create.Point(Geometry.Query.DotProduct(v, ulocx), Geometry.Query.DotProduct(v, ulocy)));
+            }
+            PolyCurve translated = Create.PolyCurve(new List<Polyline> { Create.Polyline(local_coords) });
+
+            // From here un-translates the curve
+            List<Point> untranslated_coords = new List<Point>();
+            foreach (Point pt in local_coords)
+            {
+                untranslated_coords.Add(PointSum(loc0, Create.Point(ScaleVector(ulocx, pt.X)), Create.Point(ScaleVector(ulocy, pt.Y))));
+            }
+            PolyCurve untranslated = Create.PolyCurve(new List<Polyline> { Create.Polyline(untranslated_coords) });
+
+            List<PolyCurve> output = new List<PolyCurve>() { translated, untranslated };
+
+            return output;
         }
 
-
-        public static BHG.Vector CartesianDivision(BHG.Vector A, BHG.Vector B)
+        public static int CountDecimalPlaces(double value)
         {
-            return Create.Vector(A.X / B.X, A.Y / B.Y, A.Z / B.Z);
+            if (Math.Floor(value) == value)
+            {
+                return 0;
+            }
+            string[] words = value.ToString().Split('.');
+            return words[1].Length;
         }
 
-        public static BHG.Vector CartesianDivision(BHG.Vector A, double B)
-        {
-            return Create.Vector(A.X / B, A.Y / B, A.Z / B);
-        }
+        //public static Polyline IntegerizePoint(Polyline curve)
+        //{
+        //    // Get the factor to multiply by
+        //    List<int> factorList = new List<int>();
+        //    foreach (Point pt in curve.IDiscontinuityPoints())
+        //    {
+        //        factorList.Add(CountDecimalPlaces(pt.X));
+        //        factorList.Add(CountDecimalPlaces(pt.Y));
+        //        factorList.Add(CountDecimalPlaces(pt.Z));
+        //    }
 
-        public static BHG.Point CartesianDivision(BHG.Point A, BHG.Point B)
-        {
-            return Create.Point(A.X / B.X, A.Y / B.Y, A.Z / B.Z);
-        }
+        //    int factor = (int)Math.Pow(10, factorList.Max());
 
-        public static BHG.Point CartesianDivision(BHG.Point A, double B)
-        {
-            return Create.Point(A.X / B, A.Y / B, A.Z / B);
-        }
+        //    List<Point> intPoints = new List<Point>();
+        //    foreach (Point pt in curve.IDiscontinuityPoints())
+        //    {
+        //        intPoints.Add(Create.Point(pt.X * factor, pt.Y * factor, pt.Z * factor));
+        //    }
+        //    return intPoints;
+        //}
+
+        //public static PolyCurve OffsetCurve(PolyCurve curve)
+        //{
+        //    return new PolyCurve();
+        //}
     }
 }
