@@ -18,6 +18,16 @@ namespace BH.Engine.EnergyPlus
 {
     public static partial class Modify
     {
+        public static int CountDecimalPlaces(double value)
+        {
+            if (Math.Floor(value) == value)
+            {
+                return 0;
+            }
+            string[] words = value.ToString().Split('.');
+            return words[1].Length;
+        }
+
         public static Point PointDifference(Point A, Point B)
         {
             return Create.Point(A.X - B.X, A.Y - B.Y, A.Z - B.Z);
@@ -75,7 +85,13 @@ namespace BH.Engine.EnergyPlus
                 Vector v = Create.Vector(PointDifference(pt, loc0));
                 local_coords.Add(Create.Point(Geometry.Query.DotProduct(v, ulocx), Geometry.Query.DotProduct(v, ulocy)));
             }
+
+            local_coords.Add(local_coords[0]); // this adds the first point to the end of the points list to close it again
             PolyCurve translated = Create.PolyCurve(new List<Polyline> { Create.Polyline(local_coords) });
+
+            // TODO - ADD METHOD TO CONVERT DOUBLE POINT LOCATIONS TO INTEGER POINT LOCATIONS
+            // TODO - OFFSET POINTS USING CLIPPER
+            // TODO - TRANSLATE THE OFFSET BACK TO THE ORIGINALPLANE
 
             // From here un-translates the curve
             List<Point> untranslated_coords = new List<Point>();
@@ -83,6 +99,8 @@ namespace BH.Engine.EnergyPlus
             {
                 untranslated_coords.Add(PointSum(loc0, Create.Point(ScaleVector(ulocx, pt.X)), Create.Point(ScaleVector(ulocy, pt.Y))));
             }
+
+            untranslated_coords.Add(untranslated_coords[0]); // this adds the first point to the end of the points list to close it again
             PolyCurve untranslated = Create.PolyCurve(new List<Polyline> { Create.Polyline(untranslated_coords) });
 
             List<PolyCurve> output = new List<PolyCurve>() { translated, untranslated };
@@ -90,15 +108,7 @@ namespace BH.Engine.EnergyPlus
             return output;
         }
 
-        public static int CountDecimalPlaces(double value)
-        {
-            if (Math.Floor(value) == value)
-            {
-                return 0;
-            }
-            string[] words = value.ToString().Split('.');
-            return words[1].Length;
-        }
+        
 
         //public static Polyline IntegerizePoint(Polyline curve)
         //{
