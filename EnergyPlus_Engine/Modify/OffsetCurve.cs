@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using ClipperLib;
-using Polygon = System.Collections.Generic.List<ClipperLib.IntPoint>;
-using Polygons = System.Collections.Generic.List<System.Collections.Generic.List<ClipperLib.IntPoint>>;
+using Path = System.Collections.Generic.List<ClipperLib.IntPoint>;
+using Paths = System.Collections.Generic.List<System.Collections.Generic.List<ClipperLib.IntPoint>>;
+// http://www.angusj.com/delphi/clipper.php
 
 using BH.oM.Geometry;
 using BH.Engine.Geometry;
@@ -26,6 +27,22 @@ namespace BH.Engine.EnergyPlus
             }
             string[] words = value.ToString().Split('.');
             return words[1].Length;
+        }
+
+        public static int IntegerizePointFactor(List<Point> points)
+        {
+            // Get the factor to multiply by
+            List<int> factorList = new List<int>();
+            foreach (Point pt in points)
+            {
+                factorList.Add(CountDecimalPlaces(pt.X));
+                factorList.Add(CountDecimalPlaces(pt.Y));
+                factorList.Add(CountDecimalPlaces(pt.Z));
+            }
+
+            int factor = (int)Math.Pow(10, factorList.Max());
+
+            return factor;
         }
 
         public static Point PointDifference(Point A, Point B)
@@ -90,7 +107,15 @@ namespace BH.Engine.EnergyPlus
             PolyCurve translated = Create.PolyCurve(new List<Polyline> { Create.Polyline(local_coords) });
 
             // TODO - ADD METHOD TO CONVERT DOUBLE POINT LOCATIONS TO INTEGER POINT LOCATIONS
+            int factor = IntegerizePointFactor(local_coords);
+            List<Point> intPoints = new List<Point>();
+            foreach (Point pt in local_coords)
+            {
+                intPoints.Add(Create.Point(pt.X * factor, pt.Y * factor, pt.Z * factor));
+            }
+            
             // TODO - OFFSET POINTS USING CLIPPER
+            // TODO - UNINTEGERIZE THE POINTS BACK TO THEIR DOUBLE LOCATIONS
             // TODO - TRANSLATE THE OFFSET BACK TO THE ORIGINALPLANE
 
             // From here un-translates the curve
@@ -108,28 +133,9 @@ namespace BH.Engine.EnergyPlus
             return output;
         }
 
-        
 
-        //public static Polyline IntegerizePoint(Polyline curve)
-        //{
-        //    // Get the factor to multiply by
-        //    List<int> factorList = new List<int>();
-        //    foreach (Point pt in curve.IDiscontinuityPoints())
-        //    {
-        //        factorList.Add(CountDecimalPlaces(pt.X));
-        //        factorList.Add(CountDecimalPlaces(pt.Y));
-        //        factorList.Add(CountDecimalPlaces(pt.Z));
-        //    }
 
-        //    int factor = (int)Math.Pow(10, factorList.Max());
 
-        //    List<Point> intPoints = new List<Point>();
-        //    foreach (Point pt in curve.IDiscontinuityPoints())
-        //    {
-        //        intPoints.Add(Create.Point(pt.X * factor, pt.Y * factor, pt.Z * factor));
-        //    }
-        //    return intPoints;
-        //}
 
         //public static PolyCurve OffsetCurve(PolyCurve curve)
         //{
