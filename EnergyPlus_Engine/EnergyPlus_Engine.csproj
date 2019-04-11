@@ -54,9 +54,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM\Build\Geometry_oM.dll</HintPath>
     </Reference>
-    <Reference Include="OpenStudio, Version=2.6.2.0, Culture=neutral, PublicKeyToken=e86b6217592bda30, processorArchitecture=MSIL">
+    <Reference Include="OpenStudio, Version=2.7.0.0, Culture=neutral, PublicKeyToken=e86b6217592bda30, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\openstudio-2.7.0\CSharp\openstudio\OpenStudio.dll</HintPath>
+      <HintPath>..\libs\OpenStudio.dll</HintPath>
     </Reference>
     <Reference Include="Reflection_Engine, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
