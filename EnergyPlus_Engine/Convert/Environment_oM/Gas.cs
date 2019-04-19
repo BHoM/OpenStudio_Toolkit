@@ -14,35 +14,35 @@ namespace BH.Engine.EnergyPlus
 {
     public static partial class Convert
     {
-        public static string ToOSM(this BHM.GasType gasType)
+        public static string ToOSM(this BHM.Gas gasType)
         {
             switch (gasType)
             {
-                case BHM.GasType.Air:
+                case BHM.Gas.Air:
                     return "Air";
-                case BHM.GasType.Argon:
+                case BHM.Gas.Argon:
                     return "Argon";
-                case BHM.GasType.Krypton:
+                case BHM.Gas.Krypton:
                     return "Krypton";
-                case BHM.GasType.Xenon:
+                case BHM.Gas.Xenon:
                     return "Xenon";
                 default:
                     return "Air";
             }
         }
 
-        public static BHM.GasType ToBHoMGasType(this string gasType)
+        public static BHM.Gas ToBHoMGasType(this string gasType)
         {
             if (gasType.Equals("Air"))
-                return BHM.GasType.Air;
+                return BHM.Gas.Air;
             if (gasType.Equals("Argon"))
-                return BHM.GasType.Argon;
+                return BHM.Gas.Argon;
             if (gasType.Equals("Krypton"))
-                return BHM.GasType.Krypton;
+                return BHM.Gas.Krypton;
             if (gasType.Equals("Xenon"))
-                return BHM.GasType.Xenon;
+                return BHM.Gas.Xenon;
 
-            return BHM.GasType.Undefined;
+            return BHM.Gas.Undefined;
         }
     }
 }

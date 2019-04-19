@@ -19,12 +19,10 @@ namespace BH.Engine.EnergyPlus
     {
         public static OpenStudio.SubSurface ToOSM(this BHE.Opening opening, OpenStudio.Surface hostSurface, OpenStudio.Construction construction, OpenStudio.Model referenceModel)
         {
-            Point3dVector openingPts = opening.OpeningCurve.IDiscontinuityPoints().ToOSM();
+            Point3dVector openingPts = opening.ToPolyline().IDiscontinuityPoints().ToOSM();
             SubSurface osmOpening = new SubSurface(openingPts, referenceModel);
 
-            BHP.ElementProperties openingProps = opening.ElementProperties() as BHP.ElementProperties;
-            if(openingProps != null)
-                osmOpening.setSubSurfaceType(openingProps.BuildingElementType.ToOSMFenestrationType());
+            osmOpening.setSubSurfaceType(opening.Type.ToOSMFenestrationType());
 
             osmOpening.setSurface(hostSurface);
             osmOpening.setConstruction(construction);
@@ -39,7 +37,7 @@ namespace BH.Engine.EnergyPlus
 
             if(osmOpening.azimuth() < (hostSurface.azimuth() -1) || osmOpening.azimuth() > (hostSurface.azimuth() + 1))
             {
-                osmOpening.setVertices(opening.OpeningCurve.IFlip().ICollapseToPolyline(BHG.Tolerance.Angle).ToOSM());
+                osmOpening.setVertices(opening.ToPolyline().IFlip().ICollapseToPolyline(BHG.Tolerance.Angle).ToOSM());
             }
 
             return osmOpening;

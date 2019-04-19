@@ -6,44 +6,51 @@ using System.Threading.Tasks;
 
 using OpenStudio;
 using BHE = BH.oM.Environment.Elements;
-using BHM = BH.oM.Environment.Materials;
+using BHM = BH.oM.Physical.Properties;
 using BHP = BH.oM.Environment.Properties;
+using BHEM = BH.oM.Environment.Materials;
 
 namespace BH.Engine.EnergyPlus
 {
     public static partial class Convert
     {
-        public static OpenStudio.Material ToOSM(this BHM.Material material, BHE.ConstructionRoughness roughness, OpenStudio.Model modelReference, bool isGlazed = false)
+        public static OpenStudio.Material ToOSM(this BHM.Material material, OpenStudio.Model modelReference, double thickness = 0.0, bool isGlazed = false)
         {
-            switch(material.MaterialType)
+            List<BHM.IMaterialProperties> environmentMaterialProperties = material.Properties.Where(x => x.GetType() == typeof(BHEM.IEnvironmentMaterial)).ToList();
+            if (environmentMaterialProperties.Count > 0)
             {
-                case BHE.MaterialType.Opaque:
-                    return material.ToOSMOpaqueMaterial(roughness, modelReference);
-                case BHE.MaterialType.Transparent:
-                    return material.ToOSMGlazing(modelReference);
-                case BHE.MaterialType.Gas:
+                if (environmentMaterialProperties[0].GetType() == typeof(BHEM.SolidMaterial))
+                {
+                    if ((environmentMaterialProperties[0] as BHEM.SolidMaterial).Transparency != 0)
+                        return material.ToOSMGlazing(thickness, modelReference);
+                    else
+                        return material.ToOSMOpaqueMaterial((environmentMaterialProperties[0] as BHEM.IEnvironmentMaterial).Roughness, thickness, modelReference);
+                }
+                else if (environmentMaterialProperties[0].GetType() == typeof(BHEM.GasMaterial))
+                {
                     if (isGlazed)
-                        return material.ToOSMGas(modelReference);
+                        return material.ToOSMGas(thickness, modelReference);
                     else
                         return material.ToOSMAirGap(modelReference);
-                default:
-                    return null;
+                }
             }
+
+            return null;
         }
 
-        public static OpenStudio.OpaqueMaterial ToOSMOpaqueMaterial(this BHM.Material material, BHE.ConstructionRoughness roughness, OpenStudio.Model modelReference)
+        public static OpenStudio.OpaqueMaterial ToOSMOpaqueMaterial(this BHM.Material material, BHEM.Roughness roughness, double thickness, OpenStudio.Model modelReference)
         {
-            BHP.MaterialPropertiesOpaque matProp = material.MaterialProperties as BHP.MaterialPropertiesOpaque;
+            BHEM.SolidMaterial matProp = material.Properties.Where(x => x.GetType() == typeof(BHEM.SolidMaterial)).FirstOrDefault() as BHEM.SolidMaterial;
 
             StandardOpaqueMaterial osmMaterial = new StandardOpaqueMaterial(modelReference);
             osmMaterial.setName(material.Name);
             osmMaterial.setRoughness(roughness.ToOSM());
-            osmMaterial.setThickness(material.Thickness);
+            osmMaterial.setThickness(thickness);
 
             if (matProp != null)
             {
                 osmMaterial.setConductivity(matProp.Conductivity);
-                osmMaterial.setDensity(matProp.Density);
+                osmMaterial.setDensity(material.Density);
                 osmMaterial.setSpecificHeat(matProp.SpecificHeat);
                 osmMaterial.setThermalAbsorptance(1 - matProp.EmissivityExternal); //ToDo Review for external and internal as appropriate at some point
                 osmMaterial.setSolarAbsorptance(1 - matProp.SolarReflectanceExternal); //ToDo Review for external and internal as appropriate at some point
@@ -58,22 +65,22 @@ namespace BH.Engine.EnergyPlus
             AirGap airGap = new AirGap(modelReference);
             airGap.setName(material.Name);
 
-            if(material.MaterialProperties != null)
-                airGap.setThermalConductivity(material.MaterialProperties.Conductivity);
+            if(material.Properties.Where(x => x.GetType() == typeof(BHEM.IEnvironmentMaterial)).FirstOrDefault() != null)
+                airGap.setThermalConductivity((material.Properties.Where(x => x.GetType() == typeof(BHEM.IEnvironmentMaterial)).FirstOrDefault() as BHEM.IEnvironmentMaterial).Conductivity);
 
             return airGap;
         }
 
-        public static OpenStudio.StandardGlazing ToOSMGlazing(this BHM.Material material, OpenStudio.Model modelReference)
+        public static OpenStudio.StandardGlazing ToOSMGlazing(this BHM.Material material, double thickness, OpenStudio.Model modelReference)
         {
-            BHP.MaterialPropertiesTransparent matProp = material.MaterialProperties as BHP.MaterialPropertiesTransparent;
+            BHEM.SolidMaterial matProp = material.Properties.Where(x => x.GetType() == typeof(BHEM.SolidMaterial)).FirstOrDefault() as BHEM.SolidMaterial;
 
             StandardGlazing glazing = new StandardGlazing(modelReference);
 
             //ToDo: Front and back side checks and inclusion when required - issue raised
             glazing.setName(material.Name);
             glazing.setOpticalDataType("SpectralAverage");
-            glazing.setThickness(material.Thickness);
+            glazing.setThickness(thickness);
             glazing.setSolarTransmittance(matProp.SolarTransmittance);
             glazing.setFrontSideSolarReflectanceatNormalIncidence(0);
             glazing.setBackSideSolarReflectanceatNormalIncidence(0);
@@ -89,15 +96,15 @@ namespace BH.Engine.EnergyPlus
             return glazing;
         }
 
-        public static OpenStudio.Gas ToOSMGas(this BHM.Material material, OpenStudio.Model modelReference)
+        public static OpenStudio.Gas ToOSMGas(this BHM.Material material, double thickness, OpenStudio.Model modelReference)
         {
-            BHP.MaterialPropertiesGas matProp = material.MaterialProperties as BHP.MaterialPropertiesGas;
+            BHEM.GasMaterial matProp = material.Properties.Where(x => x.GetType() == typeof(BHEM.GasMaterial)).FirstOrDefault() as BHEM.GasMaterial;
 
             Gas gas = new Gas(modelReference);
 
             gas.setName(material.Name);
-            gas.setThickness(material.Thickness);
-            gas.setGasType(matProp.GasType.ToOSM());
+            gas.setThickness(thickness);
+            gas.setGasType(matProp.Gas.ToOSM());
 
             return gas;
         }

@@ -8,10 +8,13 @@ using OpenStudio;
 
 using BH.oM.Base;
 using BHE = BH.oM.Environment.Elements;
-using BHM = BH.oM.Environment.Materials;
+using BHM = BH.oM.Physical.Properties;
 using BHP = BH.oM.Environment.Properties;
 using BH.Engine.Environment;
 using BH.Engine.EnergyPlus;
+
+using BHC = BH.oM.Physical.Properties.Construction;
+using BHEM = BH.oM.Environment.Materials;
 
 namespace BH.Adapter.EnergyPlus
 {
@@ -63,9 +66,9 @@ namespace BH.Adapter.EnergyPlus
                         
             List<IBHoMObject> objs = objects.ToList() as List<IBHoMObject>;
 
-            List<BHE.BuildingElement> buildingElements = objs.BuildingElements();
+            List<BHE.Panel> buildingElements = objs.Panels();
 
-            List<List<BHE.BuildingElement>> elementsAsSpaces = buildingElements.BuildSpaces(buildingElements.UniqueSpaceNames());
+            List<List<BHE.Panel>> elementsAsSpaces = buildingElements.ToSpaces();
 
             model = CreateModel(elementsAsSpaces, model);
 
@@ -77,55 +80,55 @@ namespace BH.Adapter.EnergyPlus
             return success;
         }
 
-        public static OpenStudio.Model CreateModel(List<List<BHE.BuildingElement>> elementsAsSpaces, OpenStudio.Model modelReference)
+        public static OpenStudio.Model CreateModel(List<List<BHE.Panel>> panelsAsSpaces, OpenStudio.Model modelReference)
         {
-            List<BHE.Construction> uniqueConstructions = elementsAsSpaces.UniqueConstructions();
+            List<BHC.Construction> uniqueConstructions = panelsAsSpaces.UniqueConstructions();
 
             //Create a curtain wall construction
-            BHE.Construction curtainWallConstruction = new BHE.Construction();
+            BHC.Construction curtainWallConstruction = new BHC.Construction();
             curtainWallConstruction.Name = "Curtain Wall Construction Replacement";
-            curtainWallConstruction.Roughness = BHE.ConstructionRoughness.VerySmooth;
-            curtainWallConstruction.Thickness = 0.1;
+
+            BHC.Layer curtainWallLayer = new BHC.Layer();
+            curtainWallLayer.Thickness = 0.1;
+
             BHM.Material curtainWallMaterial = new BHM.Material();
             curtainWallMaterial.Name = "Curtain Wall Construction Replacement";
-            curtainWallMaterial.Thickness = 0.1;
-            curtainWallMaterial.MaterialType = BHE.MaterialType.Opaque;
-            BHP.MaterialPropertiesOpaque curtainWallMaterialProperties = new BHP.MaterialPropertiesOpaque();
+            curtainWallMaterial.Density = 0.1;
+
+            BHEM.SolidMaterial curtainWallMaterialProperties = new BHEM.SolidMaterial();
+            curtainWallMaterialProperties.Roughness = BHEM.Roughness.VerySmooth;
             curtainWallMaterialProperties.SpecificHeat = 101;
             curtainWallMaterialProperties.Conductivity = 0.1;
-            curtainWallMaterialProperties.Density = 0.1;
             curtainWallMaterialProperties.EmissivityExternal = 0.1;
             curtainWallMaterialProperties.SolarReflectanceExternal = 0.1;
             curtainWallMaterialProperties.LightReflectanceExternal = 0.1;
-            curtainWallMaterial.MaterialProperties = curtainWallMaterialProperties;
-            curtainWallConstruction.Materials.Add(curtainWallMaterial);
+
+            curtainWallMaterial.Properties.Add(curtainWallMaterialProperties);
+            curtainWallLayer.Material = curtainWallMaterial;
+            curtainWallConstruction.Layers.Add(curtainWallLayer);
 
             Dictionary<string, OpenStudio.Construction> osmConstructions = new Dictionary<string, Construction>();
-            foreach(BHE.Construction c in uniqueConstructions)
+            foreach(BHC.Construction c in uniqueConstructions)
                 osmConstructions.Add(c.UniqueConstructionName(), c.ToOSM(modelReference));
 
             osmConstructions.Add("CurtainWallReplacementConstruction", curtainWallConstruction.ToOSM(modelReference));
 
-            foreach(List<BHE.BuildingElement> space in elementsAsSpaces)
+            foreach(List<BHE.Panel> space in panelsAsSpaces)
             {
                 ThermalZone osmZone = new ThermalZone(modelReference);
                 Space osmSpace = new Space(modelReference);
                 osmSpace.setThermalZone(osmZone);
 
-                foreach(BHE.BuildingElement be in space)
+                foreach(BHE.Panel be in space)
                 {
-                    string conName = "";
-                    if ((be.ElementProperties() as BHP.ElementProperties) != null)
-                        conName = (be.ElementProperties() as BHP.ElementProperties).Construction.UniqueConstructionName();
+                    string conName = be.Construction.UniqueConstructionName();
 
                     //be.ToOSM(modelReference, osmSpace, (conName == "" ? null : osmConstructions[conName]));
-                    Surface host = be.ToOSM(modelReference, osmSpace, osmConstructions, be.OutsideBoundaryCondition(be.AdjacentSpaces(elementsAsSpaces)));
+                    Surface host = be.ToOSM(modelReference, osmSpace, osmConstructions, be.OutsideBoundaryCondition(be.AdjacentSpaces(panelsAsSpaces)));
 
                     foreach (BHE.Opening o in be.Openings)
                     {
-                        conName = "";
-                        if ((o.ElementProperties() as BHP.ElementProperties) != null)
-                            conName = (o.ElementProperties() as BHP.ElementProperties).Construction.UniqueConstructionName();
+                        conName = o.OpeningConstruction.UniqueConstructionName();
 
                         o.ToOSM(host, (conName == "" ? null : osmConstructions[conName]), modelReference);
                     }
