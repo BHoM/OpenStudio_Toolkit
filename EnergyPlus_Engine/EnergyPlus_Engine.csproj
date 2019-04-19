@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Analytical_oM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM\Build\Analytical_oM.dll</HintPath>
+    </Reference>
     <Reference Include="BHoM">
       <HintPath>..\..\BHoM_Engine\Build\BHoM.dll</HintPath>
     </Reference>
@@ -58,6 +62,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\OpenStudio.dll</HintPath>
     </Reference>
+    <Reference Include="Physical_oM, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BHoM\Build\Physical_oM.dll</HintPath>
+    </Reference>
     <Reference Include="Reflection_Engine, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BHoM_Engine\Build\Reflection_Engine.dll</HintPath>
@@ -77,8 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Convert\Environment_oM\Construction.cs" />
-    <Compile Include="Convert\Environment_oM\ConstructionRoughness.cs" />
-    <Compile Include="Convert\Environment_oM\GasType.cs" />
+    <Compile Include="Convert\Environment_oM\Roughness.cs" />
+    <Compile Include="Convert\Environment_oM\Gas.cs" />
     <Compile Include="Convert\Environment_oM\Material.cs" />
     <Compile Include="Convert\Environment_oM\Building.cs" />
     <Compile Include="Convert\Geometry_oM\Polycurve.cs" />
@@ -87,7 +95,7 @@
     <Compile Include="Convert\Environment_oM\Opening.cs" />
     <Compile Include="Convert\Environment_oM\InternalGain.cs" />
     <Compile Include="Convert\Environment_oM\Zone.cs" />
-    <Compile Include="Convert\Environment_oM\BuildingElementType.cs" />
+    <Compile Include="Convert\Environment_oM\PanelType.cs" />
     <Compile Include="Convert\Geometry_oM\ICurve.cs" />
     <Compile Include="Convert\Geometry_oM\Polyline.cs" />
     <Compile Include="Create\HVACTemplateThermostat.cs" />
@@ -100,7 +108,7 @@
     <Compile Include="Create\OutputVariable.cs" />
     <Compile Include="Create\TimeStep.cs" />
     <Compile Include="Create\ZoneAirHeatBalanceAlgorithm.cs" />
-    <Compile Include="Convert\Environment_oM\BuildingElement.cs" />
+    <Compile Include="Convert\Environment_oM\Panel.cs" />
     <Compile Include="Convert\Geometry_oM\Point.cs" />
     <Compile Include="Create\SurfaceConvectionAlgorithmInside.cs" />
     <Compile Include="Create\SurfaceConvectionAlgorithmOutside.cs" />

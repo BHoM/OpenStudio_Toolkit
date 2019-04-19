@@ -16,11 +16,9 @@ namespace BH.Engine.EnergyPlus
 {
     public static partial class Query
     {
-        public static string OutsideBoundaryCondition(this BHE.BuildingElement element, List<List<BHE.BuildingElement>> adjacentSpaces)
+        public static string OutsideBoundaryCondition(this BHE.Panel panel, List<List<BHE.Panel>> adjacentSpaces)
         {
-            BHP.ElementProperties elementProperties = element.ElementProperties() as BHP.ElementProperties;
-
-            if (elementProperties.BuildingElementType == BHE.BuildingElementType.Roof || elementProperties.BuildingElementType == BHE.BuildingElementType.WallExternal)
+            if (panel.Type == BHE.PanelType.Roof || panel.Type == BHE.PanelType.WallExternal)
                 return "Outdoors";
 
             if (adjacentSpaces.Count == 2)

@@ -67,15 +67,15 @@ namespace BH.Engine.EnergyPlus
             OpenStudio.ScheduleConstant activitySchedule = ToOSMScheduleConstantActivity(modelReference);
             OpenStudio.ScheduleConstant occupancySchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);
 
-            GainPropertiesPeople peopleProperties = internalGain.GainProperties as GainPropertiesPeople;
+            PeopleGain peopleProperties = internalGain.Properties as PeopleGain;
             PeopleDefinition PeopleDefinition = new PeopleDefinition(modelReference);
             
             // TODO:Check the method being used to define the number of poeple within the space
-            if (peopleProperties.GainUnit == GainUnit.NumberOfPeople)
+            if (peopleProperties.Unit == GainUnit.NumberOfPeople)
             {
                 PeopleDefinition.setNumberofPeople(peopleProperties.Value);
             }
-            else if (peopleProperties.GainUnit == GainUnit.PeoplePerSquareMetre)
+            else if (peopleProperties.Unit == GainUnit.PeoplePerSquareMetre)
             {
                 PeopleDefinition.setPeopleperSpaceFloorArea(peopleProperties.Value);
             }
@@ -91,10 +91,10 @@ namespace BH.Engine.EnergyPlus
             // TODO: remove static instance below for input of profile object instead!
             OpenStudio.ScheduleConstant lightingSchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);
 
-            GainPropertiesLighting lightingProperties = internalGain.GainProperties as GainPropertiesLighting;
+            LightingGain lightingProperties = internalGain.Properties as LightingGain;
             LightsDefinition LightsDefinition = new LightsDefinition(modelReference);
 
-            if (lightingProperties.GainUnit == GainUnit.Watts)
+            if (lightingProperties.Unit == GainUnit.Watts)
             {
                 LightsDefinition.setLightingLevel(lightingProperties.Value);
             }
@@ -110,11 +110,11 @@ namespace BH.Engine.EnergyPlus
             // TODO: remove static instance below for input of profile object instead!
             OpenStudio.ScheduleConstant equipmentSchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);
 
-            GainPropertiesEquipmentLatent equipmentLatentProperties = internalGain.GainProperties as GainPropertiesEquipmentLatent;
-            GainPropertiesEquipmentSensible equipmentSensibleProperties = internalGain.GainProperties as GainPropertiesEquipmentSensible;
+            LatentEquipmentGain equipmentLatentProperties = internalGain.Properties as LatentEquipmentGain;
+            SensibleEquipmentGain equipmentSensibleProperties = internalGain.Properties as SensibleEquipmentGain;
             ElectricEquipmentDefinition EquipmentDefinition = new ElectricEquipmentDefinition(modelReference);
 
-            if (equipmentSensibleProperties.GainUnit == GainUnit.Watts && equipmentLatentProperties.GainUnit == GainUnit.Watts)
+            if (equipmentSensibleProperties.Unit == GainUnit.Watts && equipmentLatentProperties.Unit == GainUnit.Watts)
             {
                 EquipmentDefinition.setDesignLevel(equipmentSensibleProperties.Value);
             }
