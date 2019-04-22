@@ -16,7 +16,7 @@ namespace BH.Engine.EnergyPlus
     {
         public static OpenStudio.Material ToOSM(this BHM.Material material, OpenStudio.Model modelReference, double thickness = 0.0, bool isGlazed = false)
         {
-            List<BHM.IMaterialProperties> environmentMaterialProperties = material.Properties.Where(x => x.GetType() == typeof(BHEM.IEnvironmentMaterial)).ToList();
+            List<BHM.IMaterialProperties> environmentMaterialProperties = material.Properties.Where(x => x is BHEM.IEnvironmentMaterial).ToList();
             if (environmentMaterialProperties.Count > 0)
             {
                 if (environmentMaterialProperties[0].GetType() == typeof(BHEM.SolidMaterial))
@@ -65,8 +65,8 @@ namespace BH.Engine.EnergyPlus
             AirGap airGap = new AirGap(modelReference);
             airGap.setName(material.Name);
 
-            if(material.Properties.Where(x => x.GetType() == typeof(BHEM.IEnvironmentMaterial)).FirstOrDefault() != null)
-                airGap.setThermalConductivity((material.Properties.Where(x => x.GetType() == typeof(BHEM.IEnvironmentMaterial)).FirstOrDefault() as BHEM.IEnvironmentMaterial).Conductivity);
+            if(material.Properties.Where(x => x is BHEM.IEnvironmentMaterial).FirstOrDefault() != null)
+                airGap.setThermalConductivity((material.Properties.Where(x => x is BHEM.IEnvironmentMaterial).FirstOrDefault() as BHEM.IEnvironmentMaterial).Conductivity);
 
             return airGap;
         }
