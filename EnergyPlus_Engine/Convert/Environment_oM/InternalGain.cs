@@ -7,7 +7,7 @@ using BH.oM.EnergyPlus;
 using OpenStudio;
 using BHE = BH.oM.Environment.Elements;
 using BH.oM.Environment.Gains;
-using BH.oM.Environment.Properties;
+using BH.oM.Environment.Fragments;
 using System.ComponentModel;
 
 using BH.oM.Reflection.Attributes;

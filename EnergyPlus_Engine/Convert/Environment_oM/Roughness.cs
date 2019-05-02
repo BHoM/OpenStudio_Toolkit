@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BHE = BH.oM.Environment.Elements;
-using BHP = BH.oM.Environment.Properties;
+using BHP = BH.oM.Environment.Fragments;
 using BHG = BH.oM.Geometry;
-using BHM = BH.oM.Environment.Materials;
+using BHM = BH.oM.Environment.MaterialFragments;
 
 using BH.Engine.Environment;
 

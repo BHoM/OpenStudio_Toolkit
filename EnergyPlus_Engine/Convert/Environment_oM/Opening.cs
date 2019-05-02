@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using OpenStudio;
 using BHE = BH.oM.Environment.Elements;
-using BHP = BH.oM.Environment.Properties;
+using BHP = BH.oM.Environment.Fragments;
 
 using BH.Engine.Environment;
 using BH.Engine.Geometry;

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using OpenStudio;
 using BHE = BH.oM.Environment.Elements;
-using BHM = BH.oM.Physical.Properties;
-using BHP = BH.oM.Environment.Properties;
-using BHEM = BH.oM.Environment.Materials;
+using BHM = BH.oM.Physical.Materials;
+using BHP = BH.oM.Environment.Fragments;
+using BHEM = BH.oM.Environment.MaterialFragments;
 
 namespace BH.Engine.EnergyPlus
 {
