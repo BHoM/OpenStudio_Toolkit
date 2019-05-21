@@ -93,7 +93,6 @@ namespace BH.Adapter.EnergyPlus
 
             BHM.Material curtainWallMaterial = new BHM.Material();
             curtainWallMaterial.Name = "Curtain Wall Construction Replacement";
-            curtainWallMaterial.Density = 0.1;
 
             BHEM.SolidMaterial curtainWallMaterialProperties = new BHEM.SolidMaterial();
             curtainWallMaterialProperties.Roughness = BHEM.Roughness.VerySmooth;
@@ -102,6 +101,7 @@ namespace BH.Adapter.EnergyPlus
             curtainWallMaterialProperties.EmissivityExternal = 0.1;
             curtainWallMaterialProperties.SolarReflectanceExternal = 0.1;
             curtainWallMaterialProperties.LightReflectanceExternal = 0.1;
+            curtainWallMaterialProperties.Density = 0.1;
 
             curtainWallMaterial.Properties.Add(curtainWallMaterialProperties);
             curtainWallLayer.Material = curtainWallMaterial;
