@@ -10,6 +10,8 @@ using BHM = BH.oM.Physical.Materials;
 using BHP = BH.oM.Environment.Fragments;
 using BHEM = BH.oM.Environment.MaterialFragments;
 
+using BH.Engine.Environment;
+
 namespace BH.Engine.EnergyPlus
 {
     public static partial class Convert
@@ -21,7 +23,7 @@ namespace BH.Engine.EnergyPlus
             {
                 if (environmentMaterialProperties[0].GetType() == typeof(BHEM.SolidMaterial))
                 {
-                    if ((environmentMaterialProperties[0] as BHEM.SolidMaterial).Transparency != 0)
+                    if (material.IsTransparent())
                         return material.ToOSMGlazing(thickness, modelReference);
                     else
                         return material.ToOSMOpaqueMaterial((environmentMaterialProperties[0] as BHEM.IEnvironmentMaterial).Roughness, thickness, modelReference);
@@ -50,7 +52,7 @@ namespace BH.Engine.EnergyPlus
             if (matProp != null)
             {
                 osmMaterial.setConductivity(matProp.Conductivity);
-                osmMaterial.setDensity(material.Density);
+                osmMaterial.setDensity(matProp.Density);
                 osmMaterial.setSpecificHeat(matProp.SpecificHeat);
                 osmMaterial.setThermalAbsorptance(1 - matProp.EmissivityExternal); //ToDo Review for external and internal as appropriate at some point
                 osmMaterial.setSolarAbsorptance(1 - matProp.SolarReflectanceExternal); //ToDo Review for external and internal as appropriate at some point
