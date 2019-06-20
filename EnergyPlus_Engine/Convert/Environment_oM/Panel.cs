@@ -18,7 +18,7 @@ namespace BH.Engine.EnergyPlus
     {
         public static OpenStudio.Surface ToOSM(this BHE.Panel panel, OpenStudio.Model modelReference, OpenStudio.Space osmSpace, Dictionary<string, OpenStudio.Construction> uniqueConstructions, string outsideBoundaryCondition)
         {
-            Surface osmElement = new Surface(panel.ToPolyline().ToOSM(), modelReference);
+            Surface osmElement = new Surface(panel.Polyline().ToOSM(), modelReference);
             osmElement.setName(panel.Name);
             osmElement.setSpace(osmSpace);
             if(outsideBoundaryCondition != "")
@@ -38,15 +38,15 @@ namespace BH.Engine.EnergyPlus
                 if (panel.Openings.Count > 0)
                 {
                     //This surface already has openings - cut them out of the new opening
-                    List<BHG.Polyline> refRegion = panel.Openings.Where(y => y.ToPolyline() != null).ToList().Select(z => z.ToPolyline()).ToList();
-                    newOpeningBounds.AddRange((new List<BHG.Polyline> { panel.ToPolyline() }).BooleanDifference(refRegion, 0.01));
+                    List<BHG.Polyline> refRegion = panel.Openings.Where(y => y.Polyline() != null).ToList().Select(z => z.Polyline()).ToList();
+                    newOpeningBounds.AddRange((new List<BHG.Polyline> { panel.Polyline() }).BooleanDifference(refRegion, 0.01));
                 }
                 else
-                    newOpeningBounds.Add(panel.ToPolyline());
+                    newOpeningBounds.Add(panel.Polyline());
 
                 BHE.Opening curtainWallOpening = BH.Engine.Environment.Create.Opening(externalEdges: BH.Engine.Geometry.Create.PolyCurve(newOpeningBounds).ICollapseToPolyline(BH.oM.Geometry.Tolerance.Angle).ToEdges());
                 //Scale the bounding curve to comply with IDF rules
-                BHG.Polyline crv = curtainWallOpening.ToPolyline();
+                BHG.Polyline crv = curtainWallOpening.Polyline();
                 curtainWallOpening.Edges = crv.Scale(crv.Centre(), BH.Engine.Geometry.Create.Vector(0.95, 0.95, 0.95)).ToEdges();
 
                 curtainWallOpening.Name = panel.Name;
