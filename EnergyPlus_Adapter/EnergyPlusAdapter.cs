@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using BH.oM.Base;
 //using System.Reflection;
-using BH.oM.DataManipulation.Queries;
+using BH.oM.Data.Requests;
 using BH.oM.Reflection.Attributes;
 using System.ComponentModel;
 
@@ -44,7 +44,7 @@ namespace BH.Adapter.EnergyPlus
             return success ? objects.ToList() : new List<IObject>();
         }
 
-        public override IEnumerable<object> Pull(IQuery query, Dictionary<string, object> config = null)
+        public override IEnumerable<object> Pull(IRequest request, Dictionary<string, object> config = null)
         {
             List<IBHoMObject> returnObjs = new List<IBHoMObject>();
 
