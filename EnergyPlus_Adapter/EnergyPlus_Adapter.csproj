@@ -104,6 +104,13 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>Copy /Y "$(SolutionDir)libs\msvcp120.dll" "$(SolutionDir)Build\msvcp120.dll"
+Copy /Y "$(SolutionDir)libs\msvcr120.dll" "$(SolutionDir)Build\msvcr120.dll"
+Copy /Y "$(SolutionDir)libs\openstudio_csharp.dll" "$(SolutionDir)Build\openstudio_csharp.dll"
+Copy /Y "$(SolutionDir)libs\openstudio_model_csharp.dll" "$(SolutionDir)Build\openstudio_model_csharp.dll"
+Copy /Y "$(SolutionDir)libs\openstudio_translators_csharp.dll" "$(SolutionDir)Build\openstudio_translators_csharp.dll"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
