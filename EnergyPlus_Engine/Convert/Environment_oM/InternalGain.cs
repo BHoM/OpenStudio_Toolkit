@@ -61,43 +61,33 @@ namespace BH.Engine.EnergyPlus
         //[Input("InternalGain", "BHoM InternalGain")]
         //[Output("EnergyPlus InternalGain")]
 
-        public static OpenStudio.People ToOSMPeopleGain(this BH.oM.Environment.Gains.Gain internalGain, OpenStudio.Model modelReference, OpenStudio.Space space)
+        public static OpenStudio.People ToOSMPeopleGain(this BH.oM.Environment.Gains.People peopleGain, OpenStudio.Model modelReference, OpenStudio.Space space)
         {
             // TODO: remove static instance below for input of profile object instead!
             OpenStudio.ScheduleConstant activitySchedule = ToOSMScheduleConstantActivity(modelReference);
             OpenStudio.ScheduleConstant occupancySchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);
 
-            PeopleGain peopleProperties = internalGain.Properties as PeopleGain;
             PeopleDefinition PeopleDefinition = new PeopleDefinition(modelReference);
             
             // TODO:Check the method being used to define the number of poeple within the space
-            if (peopleProperties.Unit == GainUnit.NumberOfPeople)
-            {
-                PeopleDefinition.setNumberofPeople(peopleProperties.Value);
-            }
-            else if (peopleProperties.Unit == GainUnit.PeoplePerSquareMetre)
-            {
-                PeopleDefinition.setPeopleperSpaceFloorArea(peopleProperties.Value);
-            }
-            People peopleGain = new People(PeopleDefinition);
-            peopleGain.setNumberofPeopleSchedule(occupancySchedule);
-            peopleGain.setActivityLevelSchedule(activitySchedule);
-            peopleGain.setSpace(space);
-            return peopleGain;
+
+            PeopleDefinition.setPeopleperSpaceFloorArea(peopleGain.Sensible);
+
+            OpenStudio.People osPeopleGain = new OpenStudio.People(PeopleDefinition);
+            osPeopleGain.setNumberofPeopleSchedule(occupancySchedule);
+            osPeopleGain.setActivityLevelSchedule(activitySchedule);
+            osPeopleGain.setSpace(space);
+            return osPeopleGain;
         }
 
-        public static OpenStudio.Lights ToOSMLightingGain(this BH.oM.Environment.Gains.Gain internalGain, OpenStudio.Model modelReference, OpenStudio.Space space)
+        public static OpenStudio.Lights ToOSMLightingGain(this BH.oM.Environment.Gains.Lighting lightGain, OpenStudio.Model modelReference, OpenStudio.Space space)
         {
             // TODO: remove static instance below for input of profile object instead!
             OpenStudio.ScheduleConstant lightingSchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);
 
-            LightingGain lightingProperties = internalGain.Properties as LightingGain;
             LightsDefinition LightsDefinition = new LightsDefinition(modelReference);
 
-            if (lightingProperties.Unit == GainUnit.Watts)
-            {
-                LightsDefinition.setLightingLevel(lightingProperties.Value);
-            }
+            LightsDefinition.setLightingLevel(lightGain.Sensible);
             // TODO: Include additional methods to calculate lighting load here based on alternative metrics
             Lights lightingGain = new Lights(LightsDefinition);
             lightingGain.setSpace(space);
@@ -105,19 +95,14 @@ namespace BH.Engine.EnergyPlus
             return lightingGain;
         }
 
-        public static OpenStudio.ElectricEquipment ToOSMEquipmentGain(this BH.oM.Environment.Gains.Gain internalGain, OpenStudio.Model modelReference, OpenStudio.Space space)
+        public static OpenStudio.ElectricEquipment ToOSMEquipmentGain(this BH.oM.Environment.Gains.Equipment equipGain, OpenStudio.Model modelReference, OpenStudio.Space space)
         {
             // TODO: remove static instance below for input of profile object instead!
             OpenStudio.ScheduleConstant equipmentSchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);
 
-            LatentEquipmentGain equipmentLatentProperties = internalGain.Properties as LatentEquipmentGain;
-            SensibleEquipmentGain equipmentSensibleProperties = internalGain.Properties as SensibleEquipmentGain;
             ElectricEquipmentDefinition EquipmentDefinition = new ElectricEquipmentDefinition(modelReference);
 
-            if (equipmentSensibleProperties.Unit == GainUnit.Watts && equipmentLatentProperties.Unit == GainUnit.Watts)
-            {
-                EquipmentDefinition.setDesignLevel(equipmentSensibleProperties.Value);
-            }
+            EquipmentDefinition.setDesignLevel(equipGain.Sensible);
             // TODO: Include additional methods to calculate equipment load here based on alternative metrics
             ElectricEquipment equipmentGain = new ElectricEquipment(EquipmentDefinition);
             equipmentGain.setSpace(space);
