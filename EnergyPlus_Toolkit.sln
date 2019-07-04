@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyPlus_Engine", "Energy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyPlus_Adapter", "EnergyPlus_Adapter\EnergyPlus_Adapter.csproj", "{C4843387-1373-4645-BE68-FF5BD00EC03F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnergyPlus_Test", "EnergyPlus_Test\EnergyPlus_Test.csproj", "{50B5F5F2-74CA-45D1-B1F8-3D70FBC2A7C0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{C4843387-1373-4645-BE68-FF5BD00EC03F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4843387-1373-4645-BE68-FF5BD00EC03F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4843387-1373-4645-BE68-FF5BD00EC03F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50B5F5F2-74CA-45D1-B1F8-3D70FBC2A7C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50B5F5F2-74CA-45D1-B1F8-3D70FBC2A7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50B5F5F2-74CA-45D1-B1F8-3D70FBC2A7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50B5F5F2-74CA-45D1-B1F8-3D70FBC2A7C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
