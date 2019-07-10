@@ -75,7 +75,7 @@ namespace BH.Adapter.EnergyPlus
             EnergyPlusForwardTranslator translator = new EnergyPlusForwardTranslator();
             Workspace workspace = translator.translateModel(model);
             IdfFile idf = workspace.toIdfFile();
-            idf.save(OpenStudio.OpenStudioUtilitiesCore.toPath(IDFFilePath));
+            idf.save(OpenStudio.OpenStudioUtilitiesCore.toPath(IDFFilePath), true); //setting overwrite file true to avoid appending the surfaces to the exisiting idf file
 
             return success;
         }
