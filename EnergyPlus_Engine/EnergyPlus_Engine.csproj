@@ -120,7 +120,6 @@
     <Compile Include="Create\SurfaceConvectionAlgorithmInside.cs" />
     <Compile Include="Create\SurfaceConvectionAlgorithmOutside.cs" />
     <Compile Include="Modify\OffsetOpening.cs" />
-    <Compile Include="Modify\OffsetCurve.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\OutsideBoundaryCondition.cs" />
   </ItemGroup>
