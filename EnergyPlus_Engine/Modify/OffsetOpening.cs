@@ -17,20 +17,17 @@ namespace BH.Engine.EnergyPlus
     public static partial class Modify
     {
         [Description ("Reduces the area of the opening(s) if the total area of the opening(s) is equal to the area of the panel itself. Returns an Environment Panel object.")]
-        [Input ("panel", "an Environment Panel object")]
-        [Output("panel", "an Environment Panel object")]
+        [Input ("panel", "An Environment Panel object")]
+        [Output("panel", "An Environment Panel object")]
         public static BHE.Panel OffsetOpening(BHE.Panel panel)
         {
             BHE.Panel energyPlusPanel = new BHE.Panel();            
 
-            // checking if there are openings
-            int nropenings = panel.Openings.Count();
-
-            if (nropenings == 0)
+            // checking if there are openings            
+            if (panel.Openings.Count == 0)
             {
-                energyPlusPanel = panel;                
-            }
-            
+                energyPlusPanel = panel;
+            }            
             else
             {                                                
                 //OpeningArea                
@@ -39,35 +36,26 @@ namespace BH.Engine.EnergyPlus
                 List<PolyCurve> openingPolyCurves = new List<PolyCurve>();
                 foreach (BHE.Opening opening in panel.Openings)
                 {
-                    List<ICurve> openingCrvs = new List<ICurve>();
-                    foreach (BHE.Edge edge in opening.Edges)
-                    {
-                        openingCrvs.Add(edge.Curve);
-                    }
+                    List<ICurve> openingCrvs = opening.Edges.Select(x => x.Curve).ToList();                   
                     PolyCurve openingOutline = BH.Engine.Geometry.Create.PolyCurve(openingCrvs);
                     double openingArea = openingOutline.Area();
                     openingAreas.Add(openingArea);
                     openingPolyCurves.Add(openingOutline);
                 }
-                double totalOpeningArea = openingAreas.Sum();
+                double totalOpeningArea = openingAreas.Sum();                
 
                 //PanelArea
-                List<ICurve> panelCrvs = new List<ICurve>();
-                foreach (BHE.Edge edge in panel.ExternalEdges)
-                {
-                    panelCrvs.Add(edge.Curve);
-                }
+                List<ICurve> panelCrvs = panel.ExternalEdges.Select(x => x.Curve).ToList();               
                 PolyCurve panelOutline = BH.Engine.Geometry.Create.PolyCurve(panelCrvs);
                 double panelArea = panelOutline.Area();
 
                 //Comparing the total opening area to the panel area, if equal: reduce the area of the opening(s).
-
-                if (totalOpeningArea.Equals(panelArea) == false)
+                if (totalOpeningArea != panelArea)                
                 {
                     energyPlusPanel = panel;
                 }
                     
-                if (totalOpeningArea.Equals(panelArea) == true)
+                else
                 {                                        
                     List<BH.oM.Geometry.Polyline> openingPolylines = new List<BH.oM.Geometry.Polyline>();
                     List<List<BH.oM.Geometry.Polyline>> offsetPolylines = new List<List<BH.oM.Geometry.Polyline>>();
@@ -75,8 +63,6 @@ namespace BH.Engine.EnergyPlus
                     double distance = new double();
                     distance = -0.01;
                     panel.Openings.Clear();
-
-
 
                     foreach (BH.oM.Geometry.PolyCurve openingPolyCurve in openingPolyCurves)
                     {                        
@@ -100,5 +86,3 @@ namespace BH.Engine.EnergyPlus
         }
     }
 }
-
-
