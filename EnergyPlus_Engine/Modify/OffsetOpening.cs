@@ -11,6 +11,7 @@ using BHE = BH.oM.Environment.Elements;
 using BH.oM.Reflection.Attributes;
 using System.ComponentModel;
 using BH.Engine.Radiance;
+using BH.Engine.Environment;
 
 namespace BH.Engine.EnergyPlus
 {
@@ -23,10 +24,10 @@ namespace BH.Engine.EnergyPlus
         {
             BHE.Panel energyPlusPanel = new BHE.Panel();            
 
-            // checking if there are openings            
+            //Checking if there are openings            
             if (panel.Openings.Count == 0)
-            {
-                energyPlusPanel = panel;
+            {                
+                return panel;
             }            
             else
             {                                                
@@ -52,9 +53,8 @@ namespace BH.Engine.EnergyPlus
                 //Comparing the total opening area to the panel area, if equal: reduce the area of the opening(s).
                 if (totalOpeningArea != panelArea)                
                 {
-                    energyPlusPanel = panel;
-                }
-                    
+                    return panel;
+                }                    
                 else
                 {                                        
                     List<BH.oM.Geometry.Polyline> openingPolylines = new List<BH.oM.Geometry.Polyline>();
@@ -63,26 +63,18 @@ namespace BH.Engine.EnergyPlus
                     double distance = new double();
                     distance = -0.01;
                     panel.Openings.Clear();
-
                     foreach (BH.oM.Geometry.PolyCurve openingPolyCurve in openingPolyCurves)
                     {                        
                         List<BH.oM.Geometry.Point> polyPoints = openingPolyCurve.IDiscontinuityPoints();
                         BH.oM.Geometry.Polyline openingPolyLine = BH.Engine.Geometry.Create.Polyline(polyPoints);
                         List<BH.oM.Geometry.Polyline> offsetPolyline = BH.Engine.Radiance.Compute.Offset(openingPolyLine, distance);
-                        List<BHE.Edge> edges = new List<BHE.Edge>();
-                        
-                        foreach (BH.oM.Geometry.Polyline pline in offsetPolyline)
-                        {
-                            BHE.Edge edge = BH.Engine.Environment.Create.Edge(pline);
-                            edges.Add(edge);
-                        }
+                        List<BHE.Edge> edges = offsetPolyline.Select(x => BH.Engine.Environment.Create.Edge(x)).ToList();                      
                         BHE.Opening newOpening = BH.Engine.Environment.Create.Opening("name", edges);
                         panel.Openings.Add(newOpening);                        
                     }
-                    energyPlusPanel = panel;
+                    return panel;
                 }
-            }
-            return energyPlusPanel;            
+            }                        
         }
     }
 }
