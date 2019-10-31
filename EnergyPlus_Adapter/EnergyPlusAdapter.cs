@@ -21,9 +21,7 @@ namespace BH.Adapter.EnergyPlus
             IDFFilePath = idfFilePath;
 
             AdapterId = "EnergyPlus_Adapter";
-            Config.MergeWithComparer = false;   //Set to true after comparers have been implemented
             Config.ProcessInMemory = false;
-            Config.SeparateProperties = false;  //Set to true after Dependency types have been implemented
             Config.UseAdapterId = false;        //Set to true when NextId method and id tagging has been implemented
         }
 
@@ -46,10 +44,10 @@ namespace BH.Adapter.EnergyPlus
 
         public override IEnumerable<object> Pull(IRequest request, Dictionary<string, object> config = null)
         {
-            List<IBHoMObject> returnObjs = new List<IBHoMObject>();
+            if (request is IRequest)
+                return Read();
 
-            //Return the package
-            return returnObjs;
+            return new List<IBHoMObject>();
         }
 
 

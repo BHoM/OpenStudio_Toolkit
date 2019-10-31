@@ -20,7 +20,7 @@ namespace BH.Adapter.EnergyPlus
 {
     public partial class EnergyPlusAdapter : BHoMAdapter
     {
-        protected override bool Create<T>(IEnumerable<T> objects, bool replaceAll = false)
+        protected override bool Create<T>(IEnumerable<T> objects)
         {
             bool success = true;
 
