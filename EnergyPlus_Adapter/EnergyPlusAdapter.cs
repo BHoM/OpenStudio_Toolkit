@@ -14,7 +14,7 @@ namespace BH.Adapter.EnergyPlus
 {
     public partial class EnergyPlusAdapter : BHoMAdapter
     {
-        [Description("Produces an EnergyPlus Adapter to allow interopability with IDF files and the BHoM")]
+        [Description("Produces an EnergyPlus Adapter to allow interopability with IDF files and the BHoM. This adapter is under development. Its use is not yet sanctioned for project work. You use this at your own risk. Check the GitHub repo for the latest version and updates on development status")]
         [Input("idfFilePath", "Path to an IDF File")]
         [Output("adapter", "Adapter to an IDF File")]
         public EnergyPlusAdapter(string idfFilePath)
