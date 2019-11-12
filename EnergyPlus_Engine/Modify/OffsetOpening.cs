@@ -10,7 +10,6 @@ using BH.Engine.Geometry;
 using BHE = BH.oM.Environment.Elements;
 using BH.oM.Reflection.Attributes;
 using System.ComponentModel;
-using BH.Engine.Radiance;
 using BH.Engine.Environment;
 
 namespace BH.Engine.EnergyPlus
@@ -19,11 +18,10 @@ namespace BH.Engine.EnergyPlus
     {
         [Description ("Reduces the area of the opening(s) if the total area of the opening(s) is equal to the area of the panel itself. Returns an Environment Panel object.")]
         [Input ("panel", "An Environment Panel object")]
-        [Output("panel", "An Environment Panel object")]
+        [Output("panel", "An Environment Panel object TEST TEST")]
         public static BHE.Panel OffsetOpening(BHE.Panel panel)
         {
-            BHE.Panel energyPlusPanel = new BHE.Panel();            
-
+            BHE.Panel energyPlusPanel = new BHE.Panel();                        
             //Checking if there are openings            
             if (panel.Openings.Count == 0)
             {                
@@ -66,11 +64,11 @@ namespace BH.Engine.EnergyPlus
                     foreach (BH.oM.Geometry.PolyCurve openingPolyCurve in openingPolyCurves)
                     {                        
                         List<BH.oM.Geometry.Point> polyPoints = openingPolyCurve.IDiscontinuityPoints();
-                        BH.oM.Geometry.Polyline openingPolyLine = BH.Engine.Geometry.Create.Polyline(polyPoints);
-                        List<BH.oM.Geometry.Polyline> offsetPolyline = BH.Engine.Radiance.Compute.Offset(openingPolyLine, distance);
-                        List<BHE.Edge> edges = offsetPolyline.Select(x => BH.Engine.Environment.Create.Edge(x)).ToList();                      
+                        BH.oM.Geometry.Polyline openingPolyLine = BH.Engine.Geometry.Create.Polyline(polyPoints);                        
+                        Polyline offsetPolyline = Geometry.Modify.Offset(openingPolyLine, distance);
+                        List<BHE.Edge> edges = offsetPolyline.ToEdges().ToList();                      
                         BHE.Opening newOpening = BH.Engine.Environment.Create.Opening("name", edges);
-                        panel.Openings.Add(newOpening);                        
+                        panel.Openings.Add(newOpening);                                               
                     }
                     return panel;
                 }
