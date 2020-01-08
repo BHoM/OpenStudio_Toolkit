@@ -7,7 +7,7 @@
     <ProjectGuid>{81801312-9164-4C58-B78F-A2F7E41C351A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BH.Engine.EnergyPlus</RootNamespace>
+    <RootNamespace>BH.Engine.OpenStudio</RootNamespace>
     <AssemblyName>EnergyPlus_Engine</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -127,10 +127,9 @@
     <Compile Include="Query\OutsideBoundaryCondition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EnergyPlus_Toolkit\EnergyPlus_oM\EnergyPlus_oM.csproj">
-      <Project>{d20a1bbc-e8f9-43d4-becc-67f21c3c3b2a}</Project>
-      <Name>EnergyPlus_oM</Name>
-      <Private>False</Private>
+    <ProjectReference Include="..\OpenStudio_oM\OpenStudio_oM.csproj">
+      <Project>{3ae8a451-f426-4094-a5b8-86f1944d7b38}</Project>
+      <Name>OpenStudio_oM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

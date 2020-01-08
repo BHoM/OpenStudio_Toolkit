@@ -7,7 +7,7 @@
     <ProjectGuid>{4BF23D22-3EBF-4124-B30E-E49BD6A8C3F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BH.Adapter.EnergyPlus</RootNamespace>
+    <RootNamespace>BH.Adapter.OpenStudio</RootNamespace>
     <AssemblyName>EnergyPlus_Adapter</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -105,15 +105,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\EnergyPlus_Toolkit\EnergyPlus_Engine\EnergyPlus_Engine.csproj">
-      <Project>{e000d5d8-a16f-46b3-a49b-a57038e119c3}</Project>
-      <Name>EnergyPlus_Engine</Name>
-      <Private>False</Private>
+    <ProjectReference Include="..\OpenStudio_Engine\OpenStudio_Engine.csproj">
+      <Project>{81801312-9164-4c58-b78f-a2f7e41c351a}</Project>
+      <Name>OpenStudio_Engine</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\EnergyPlus_Toolkit\EnergyPlus_oM\EnergyPlus_oM.csproj">
-      <Project>{d20a1bbc-e8f9-43d4-becc-67f21c3c3b2a}</Project>
-      <Name>EnergyPlus_oM</Name>
-      <Private>False</Private>
+    <ProjectReference Include="..\OpenStudio_oM\OpenStudio_oM.csproj">
+      <Project>{3ae8a451-f426-4094-a5b8-86f1944d7b38}</Project>
+      <Name>OpenStudio_oM</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
