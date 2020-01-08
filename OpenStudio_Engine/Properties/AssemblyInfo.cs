@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("EnergyPlus_Engine")]
+[assembly: AssemblyTitle("OpenStudio_Engine")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("EnergyPlus_Engine")]
+[assembly: AssemblyProduct("OpenStudio_Engine")]
 [assembly: AssemblyCopyright("Copyright © https://github.com/BHoM")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

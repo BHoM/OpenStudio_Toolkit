@@ -14,7 +14,7 @@ namespace BH.Adapter.OpenStudio
 {
     public partial class OpenStudioAdapter : BHoMAdapter
     {
-        [Description("Produces an EnergyPlus Adapter to allow interopability with IDF files and the BHoM. This adapter is under development. Its use is not yet sanctioned for project work. You use this at your own risk. Check the GitHub repo for the latest version and updates on development status")]
+        [Description("Produces an OpenStudio Adapter to allow interopability with IDF files and the BHoM. This adapter is under development. Its use is not yet sanctioned for project work. You use this at your own risk. Check the GitHub repo for the latest version and updates on development status")]
         [Input("idfFilePath", "Path to an IDF File")]
         [Output("adapter", "Adapter to an IDF File")]
         public OpenStudioAdapter(string idfFilePath)
@@ -22,7 +22,7 @@ namespace BH.Adapter.OpenStudio
             BH.Engine.Reflection.Compute.RecordWarning("This adapter is under development. Its use is not yet sanctioned for project work. You use this at your own risk. Check the GitHub repo for the latest version and updates on development status");
             IDFFilePath = idfFilePath;
 
-            AdapterId = "EnergyPlus_Adapter";
+            AdapterId = "OpenStudio_Adapter";
             Config.UseAdapterId = false;        //Set to true when NextId method and id tagging has been implemented
         }
 
