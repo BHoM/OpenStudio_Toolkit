@@ -101,7 +101,7 @@
     <Compile Include="CRUD\Delete.cs" />
     <Compile Include="CRUD\Read.cs" />
     <Compile Include="CRUD\Update.cs" />
-    <Compile Include="EnergyPlusAdapter.cs" />
+    <Compile Include="OpenStudioAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
