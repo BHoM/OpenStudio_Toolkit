@@ -16,11 +16,13 @@ using BH.Engine.OpenStudio;
 using BHC = BH.oM.Physical.Constructions;
 using BHEM = BH.oM.Environment.MaterialFragments;
 
+using BH.oM.Adapter;
+
 namespace BH.Adapter.OpenStudio
 {
     public partial class OpenStudioAdapter : BHoMAdapter
     {
-        protected override bool Create<T>(IEnumerable<T> objects)
+        protected override bool ICreate<T>(IEnumerable<T> objects, ActionConfig actionConfig = null)
         {
             bool success = true;
 
@@ -29,32 +31,6 @@ namespace BH.Adapter.OpenStudio
                 CreateModel(objects as List<IBHoMObject>);
             }
 
-            /*OpenStudio.Model model = new Model();
-
-            if (typeof(IBHoMObject).IsAssignableFrom(typeof(T)))
-            {
-                List<IBHoMObject> objs = objects.ToList() as List<IBHoMObject>;
-
-                List<BHE.BuildingElement> buildingElements = objs.BuildingElements();
-
-                List<List<BHE.BuildingElement>> elementsAsSpaces = buildingElements.BuildSpaces(buildingElements.UniqueSpaceNames());
-
-                model = CreateModel(elementsAsSpaces, model);
-            }
-
-            EnergyPlusForwardTranslator translator = new EnergyPlusForwardTranslator();
-            Workspace workspace = translator.translateModel(model);
-            IdfFile idf = workspace.toIdfFile();
-            idf.save(OpenStudio.OpenStudioUtilitiesCore.toPath(IDFFilePath));
-            /*OpenStudio.Model model = new Model();
-
-            EnergyPlusForwardTranslator t2 = new EnergyPlusForwardTranslator();
-            Workspace w2 = t2.translateModel(model);
-            IdfFile i2 = w2.toIdfFile();
-
-
-            i2.save(new OpenStudio.Path(OpenStudio.OpenStudioUtilitiesCore.toPath(@"C:\Users\fgreenro\Documents\Repo Code\Test Files & Scripts\BHoM Testing\EnergyPlus_Toolkit\firstTest.idf")), true);
-            */
             return success;
         }
 
