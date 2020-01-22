@@ -19,11 +19,13 @@ namespace BH.Adapter.OpenStudio
         public OpenStudioAdapter(string idfFilePath)
         {
             BH.Engine.Reflection.Compute.RecordWarning("This adapter is under development. Its use is not yet sanctioned for project work. You use this at your own risk. Check the GitHub repo for the latest version and updates on development status");
-            IDFFilePath = idfFilePath;
+            m_IDFFilePath = idfFilePath;
 
             AdapterIdName = "OpenStudio_Adapter";
+
+            m_AdapterSettings.DefaultPushType = oM.Adapter.PushType.CreateOnly;
         }
 
-        private string IDFFilePath { get; set; }
+        private string m_IDFFilePath;
     }
 }
