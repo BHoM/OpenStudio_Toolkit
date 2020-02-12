@@ -17,6 +17,7 @@ using BHC = BH.oM.Physical.Constructions;
 using BHEM = BH.oM.Environment.MaterialFragments;
 
 using BH.oM.Adapter;
+using BH.Engine.Adapter;
 
 namespace BH.Adapter.OpenStudio
 {
@@ -51,7 +52,7 @@ namespace BH.Adapter.OpenStudio
             EnergyPlusForwardTranslator translator = new EnergyPlusForwardTranslator();
             Workspace workspace = translator.translateModel(model);
             IdfFile idf = workspace.toIdfFile();
-            idf.save(global::OpenStudio.OpenStudioUtilitiesCore.toPath(m_IDFFilePath), true); //setting overwrite file true to avoid appending the surfaces to the exisiting idf file
+            idf.save(global::OpenStudio.OpenStudioUtilitiesCore.toPath(m_IDFFilePath.GetFullFileName()), true); //setting overwrite file true to avoid appending the surfaces to the exisiting idf file
 
             return success;
         }
