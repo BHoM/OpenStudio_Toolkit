@@ -61,7 +61,7 @@ namespace BH.Engine.OpenStudio
                 {
                     //This surface already has openings - cut them out of the new opening
                     List<BHG.Polyline> refRegion = panel.Openings.Where(y => y.Polyline() != null).ToList().Select(z => z.Polyline()).ToList();
-                    newOpeningBounds.AddRange((new List<BHG.Polyline> { panel.Polyline() }).BooleanDifference(refRegion, 0.01));
+                    newOpeningBounds.AddRange((panel.Polyline().BooleanDifference(refRegion, 0.01)));
                 }
                 else
                     newOpeningBounds.Add(panel.Polyline());
