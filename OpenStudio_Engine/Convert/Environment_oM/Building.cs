@@ -36,7 +36,7 @@ namespace BH.Engine.OpenStudio
         public static global::OpenStudio.Building ToOSM(this BHE.Building building, global::OpenStudio.Building osmBuilding)
         {
             osmBuilding.setName(building.Name);
-            osmBuilding.setNorthAxis(building.Latitude);
+            osmBuilding.setNorthAxis(building.Location.Latitude);
             //osmBuilding.
             return osmBuilding;
         }
