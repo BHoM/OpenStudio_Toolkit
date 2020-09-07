@@ -26,9 +26,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base;
-using BH.oM.OpenStudio.Interface;
+using BH.oM.Adapters.OpenStudio.Interface;
 
-namespace BH.oM.OpenStudio
+namespace BH.oM.Adapters.OpenStudio
 {
     //public class ElectricEquipment : BHoMObject
     //{

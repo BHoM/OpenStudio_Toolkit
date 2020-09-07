@@ -31,7 +31,7 @@ using BHE = BH.oM.Environment.Elements;
 using BHM = BH.oM.Physical.Materials;
 using BHP = BH.oM.Physical.Constructions;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Convert
     {

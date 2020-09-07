@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 using BHG = BH.oM.Geometry;
 using OpenStudio;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Convert
     {

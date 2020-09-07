@@ -26,7 +26,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BH.oM.OpenStudio
+namespace BH.oM.Adapters.OpenStudio
 {
     public enum WindowPropertyDividerType
     {

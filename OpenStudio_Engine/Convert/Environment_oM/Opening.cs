@@ -35,7 +35,7 @@ using BH.Engine.Geometry;
 
 using BHG = BH.oM.Geometry;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Convert
     {

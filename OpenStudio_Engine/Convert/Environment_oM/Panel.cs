@@ -34,7 +34,7 @@ using BH.Engine.Environment;
 using BHG = BH.oM.Geometry;
 using BH.Engine.Geometry;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Convert
     {
@@ -66,7 +66,8 @@ namespace BH.Engine.OpenStudio
                 else
                     newOpeningBounds.Add(panel.Polyline());
 
-                BHE.Opening curtainWallOpening = BH.Engine.Environment.Create.Opening(externalEdges: BH.Engine.Geometry.Create.PolyCurve(newOpeningBounds).ICollapseToPolyline(BH.oM.Geometry.Tolerance.Angle).ToEdges());
+                BHE.Opening curtainWallOpening = new BHE.Opening() { Edges = BH.Engine.Geometry.Create.PolyCurve(newOpeningBounds).ICollapseToPolyline(BH.oM.Geometry.Tolerance.Angle).ToEdges() };
+
                 //Scale the bounding curve to comply with IDF rules
                 BHG.Polyline crv = curtainWallOpening.Polyline();
                 curtainWallOpening.Edges = crv.Scale(crv.Centre(), BH.Engine.Geometry.Create.Vector(0.95, 0.95, 0.95)).ToEdges();

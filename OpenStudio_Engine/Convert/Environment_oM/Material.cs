@@ -34,7 +34,7 @@ using BHEM = BH.oM.Environment.MaterialFragments;
 
 using BH.Engine.Environment;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Convert
     {

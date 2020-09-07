@@ -26,7 +26,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BH.oM.OpenStudio
+namespace BH.oM.Adapters.OpenStudio
 {
     // All algorithms referenced here can be found in documentation for EnergyPlus - https://bigladdersoftware.com/epx/docs/8-0/engineering-reference/page-021.html
 

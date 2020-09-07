@@ -27,13 +27,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 using BH.oM.Reflection.Attributes;
-using BH.oM.OpenStudio;
+using BH.oM.Adapters.OpenStudio;
 using BH.Engine.Base;
 using System.Collections;
 using System.ComponentModel;
 using BH.oM.Environment.Elements;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     //public static partial class Create
     //{
