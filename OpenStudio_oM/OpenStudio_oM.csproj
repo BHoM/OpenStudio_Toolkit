@@ -7,7 +7,7 @@
     <ProjectGuid>{3AE8A451-F426-4094-A5B8-86F1944D7B38}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BH.oM.OpenStudio</RootNamespace>
+    <RootNamespace>BH.oM.Adatpers.OpenStudio</RootNamespace>
     <AssemblyName>OpenStudio_oM</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

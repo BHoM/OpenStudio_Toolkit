@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 using BH.oM.Base;
 using BH.oM.Geometry;
 
-namespace BH.oM.OpenStudio
+namespace BH.oM.Adapters.OpenStudio
 {
     //public class FenestrationSurfaceDetailed : BHoMObject
     //{

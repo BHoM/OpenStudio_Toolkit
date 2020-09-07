@@ -34,7 +34,7 @@ using BH.Engine.Environment;
 using BHG = BH.oM.Geometry;
 using BH.Engine.Geometry;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Query
     {

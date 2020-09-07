@@ -27,7 +27,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BH.oM.Base;
 
-namespace BH.oM.OpenStudio
+namespace BH.oM.Adapters.OpenStudio
 {
     //public class Timestep : BHoMObject
     //{

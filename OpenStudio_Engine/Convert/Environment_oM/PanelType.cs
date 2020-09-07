@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 
 using BHE = BH.oM.Environment.Elements;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Convert
     {

@@ -34,7 +34,7 @@ using BH.oM.Reflection.Attributes;
 using System.ComponentModel;
 using BH.Engine.Environment;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Modify
     {
@@ -88,8 +88,8 @@ namespace BH.Engine.OpenStudio
                         List<BH.oM.Geometry.Point> polyPoints = openingPolyCurve.IDiscontinuityPoints();
                         BH.oM.Geometry.Polyline openingPolyLine = BH.Engine.Geometry.Create.Polyline(polyPoints);                        
                         Polyline offsetPolyline = Geometry.Modify.Offset(openingPolyLine, distance);
-                        List<BHE.Edge> edges = offsetPolyline.ToEdges().ToList();                      
-                        BHE.Opening newOpening = BH.Engine.Environment.Create.Opening("name", edges);
+                        List<BHE.Edge> edges = offsetPolyline.ToEdges().ToList();
+                        BHE.Opening newOpening = new BHE.Opening() { Edges = edges };
                         panel.Openings.Add(newOpening);                                               
                     }
                     return panel;

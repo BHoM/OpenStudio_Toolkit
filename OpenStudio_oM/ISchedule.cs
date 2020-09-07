@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 
 using BH.oM.Base;
 
-namespace BH.oM.OpenStudio.Interface
+namespace BH.oM.Adapters.OpenStudio.Interface
 {
     //public interface IScheduleDay : IBHoMObject
     //{

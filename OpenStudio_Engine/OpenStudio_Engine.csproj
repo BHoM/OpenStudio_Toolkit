@@ -7,7 +7,7 @@
     <ProjectGuid>{81801312-9164-4C58-B78F-A2F7E41C351A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BH.Engine.OpenStudio</RootNamespace>
+    <RootNamespace>BH.Engine.Adapters.OpenStudio</RootNamespace>
     <AssemblyName>OpenStudio_Engine</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

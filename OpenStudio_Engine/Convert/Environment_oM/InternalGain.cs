@@ -25,17 +25,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BH.oM.OpenStudio;
+using BH.oM.Adapters.OpenStudio;
 using OpenStudio;
 using BHE = BH.oM.Environment.Elements;
-using BH.oM.Environment.Gains;
+using BH.oM.Environment.SpaceCriteria;
 using BH.oM.Environment.Fragments;
 using System.ComponentModel;
 
 using BH.oM.Reflection.Attributes;
 using BH.Engine.Base;
 
-namespace BH.Engine.OpenStudio
+namespace BH.Engine.Adapters.OpenStudio
 {
     public static partial class Convert
     {
@@ -83,7 +83,7 @@ namespace BH.Engine.OpenStudio
         //[Input("InternalGain", "BHoM InternalGain")]
         //[Output("EnergyPlus InternalGain")]
 
-        public static global::OpenStudio.People ToOSMPeopleGain(this BH.oM.Environment.Gains.People peopleGain, global::OpenStudio.Model modelReference, global::OpenStudio.Space space)
+        public static global::OpenStudio.People ToOSMPeopleGain(this BH.oM.Environment.SpaceCriteria.People peopleGain, global::OpenStudio.Model modelReference, global::OpenStudio.Space space)
         {
             // TODO: remove static instance below for input of profile object instead!
             global::OpenStudio.ScheduleConstant activitySchedule = ToOSMScheduleConstantActivity(modelReference);
@@ -102,7 +102,7 @@ namespace BH.Engine.OpenStudio
             return osPeopleGain;
         }
 
-        public static global::OpenStudio.Lights ToOSMLightingGain(this BH.oM.Environment.Gains.Lighting lightGain, global::OpenStudio.Model modelReference, global::OpenStudio.Space space)
+        public static global::OpenStudio.Lights ToOSMLightingGain(this BH.oM.Environment.SpaceCriteria.Lighting lightGain, global::OpenStudio.Model modelReference, global::OpenStudio.Space space)
         {
             // TODO: remove static instance below for input of profile object instead!
             global::OpenStudio.ScheduleConstant lightingSchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);
@@ -117,7 +117,7 @@ namespace BH.Engine.OpenStudio
             return lightingGain;
         }
 
-        public static global::OpenStudio.ElectricEquipment ToOSMEquipmentGain(this BH.oM.Environment.Gains.Equipment equipGain, global::OpenStudio.Model modelReference, global::OpenStudio.Space space)
+        public static global::OpenStudio.ElectricEquipment ToOSMEquipmentGain(this BH.oM.Environment.SpaceCriteria.Equipment equipGain, global::OpenStudio.Model modelReference, global::OpenStudio.Space space)
         {
             // TODO: remove static instance below for input of profile object instead!
             global::OpenStudio.ScheduleConstant equipmentSchedule = ToOSMScheduleConstantsAlwaysOn(modelReference);

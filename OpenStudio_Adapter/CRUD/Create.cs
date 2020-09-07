@@ -33,7 +33,7 @@ using BHE = BH.oM.Environment.Elements;
 using BHM = BH.oM.Physical.Materials;
 using BHP = BH.oM.Environment.Fragments;
 using BH.Engine.Environment;
-using BH.Engine.OpenStudio;
+using BH.Engine.Adapters.OpenStudio;
 
 using BHC = BH.oM.Physical.Constructions;
 using BHEM = BH.oM.Environment.MaterialFragments;
